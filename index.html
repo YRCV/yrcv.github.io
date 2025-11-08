@@ -9,7 +9,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@200;300;400&display=swap');
 
 :root {
-  /* --- Dark Mode (Default) --- */
   --bg-gradient: linear-gradient(to bottom, #000000 0%, #0a0e27 50%, #1a1a3e 100%);
   --text-primary: #fff;
   --text-secondary: #888;
@@ -19,6 +18,8 @@
   --accent-glow: rgba(255, 215, 0, 0.8);
   --accent-bg-hover: rgba(255, 215, 0, 0.1);
   
+  --bg-overscroll: #000000;
+
   --bg-nav: rgba(10, 14, 39, 0.8);
   --bg-panel: rgba(20, 20, 35, 0.5);
   --bg-card-hover: #111;
@@ -30,7 +31,6 @@
   --bg-scrollbar-thumb: #333;
   --bg-scrollbar-thumb-hover: #555;
   
-  /* --- Skill Tag Colors (Dark Mode) --- */
   --tag-text: #eee;
   --tag-bg: rgba(255, 255, 255, 0.08);
   --tag-border: rgba(255, 255, 255, 0.15);
@@ -38,7 +38,6 @@
 }
 
 body.light-mode {
-  /* --- Light Mode Overrides --- */
   --bg-gradient: linear-gradient(to bottom, #a8c0ff 0%, #fbc2eb 100%);
   --text-primary: #111;
   --text-secondary: #555;
@@ -59,7 +58,6 @@ body.light-mode {
   --bg-scrollbar-thumb: #ccc;
   --bg-scrollbar-thumb-hover: #aaa;
   
-  /* --- Skill Tag Colors (Light Mode) --- */
   --tag-text: #222;
   --tag-bg: rgba(0, 0, 0, 0.05);
   --tag-border: rgba(0, 0, 0, 0.1);
@@ -72,13 +70,18 @@ body.light-mode {
   box-sizing: border-box;
 }
 
+html {
+  background-color: var(--bg-overscroll);
+  transition: background-color 0.5s ease;
+}
+
 body {
   background: var(--bg-gradient);
   color: var(--text-primary);
   font-family: 'Source Code Pro', monospace;
   font-weight: 300;
   line-height: 1.8;
-  padding: 40px 20px; /* Reduced top padding */
+  padding: 40px 20px;
   position: relative;
   overflow-x: hidden;
   transition: background 0.5s ease, color 0.5s ease;
@@ -110,7 +113,7 @@ body::before {
 }
 
 body.light-mode::before {
-  opacity: 0; /* Hide stars in light mode */
+  opacity: 0; 
 }
 
 @keyframes twinkle {
