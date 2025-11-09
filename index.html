@@ -11,7 +11,7 @@
 :root {
   --bg-gradient: linear-gradient(to bottom, #000000 0%, #0a0e27 50%, #1a1a3e 100%);
   --text-primary: #fff;
-  --text-secondary: #888;
+  --text-secondary: #dbdbdb;
   --text-tertiary: #666;
   --text-medium: #ccc;
   --accent-color: #ffd700;
@@ -79,7 +79,7 @@ body {
   background: var(--bg-gradient);
   color: var(--text-primary);
   font-family: 'Source Code Pro', monospace;
-  font-weight: 300;
+  font-weight: 350;
   line-height: 1.8;
   padding: 40px 20px;
   position: relative;
@@ -760,6 +760,19 @@ body.light-mode .project-detail::before {
       <div class="experience-list">
         
         <div class="experience-card">
+          <h5>C++ Tutor</h5>
+          <div class="tech">NJIT | Sep 2025 - Present</div>
+          <div class="skill-tags">
+            <span class="skill-tag">C++</span>
+            <span class="skill-tag">One-on-one Instruction</span>
+          </div>
+          <ul>
+            <li>Tutoring C++ programming fundamentals</li>
+            <li>Tutoring Physics I (Kinematics, Motion, Torque...) and Physics II (Electricity & Magnetism)</li>
+          </ul>
+        </div>
+        
+        <div class="experience-card">
           <h5>Computer Science Teaching Assistant</h5>
           <div class="tech">Educational Opportunity Program - NJIT | Jun 2025 - Aug 2025</div>
           <div class="skill-tags">
@@ -788,8 +801,25 @@ body.light-mode .project-detail::before {
             <li>Applied trend analysis to refine content strategies, driving 20M+ views on sponsored videos in two months</li>
           </ul>
         </div>
+
+        <div class="experience-card">
+          <h5>Research Ambassador</h5>
+          <div class="tech">NJIT | Sep 2024 - May 2025</div>
+          <div class="skill-tags">
+            <span class="skill-tag">Communication</span>
+            <span class="skill-tag">Outreach</span>
+            <span class="skill-tag">Event Planning</span>
+          </div>
+          <ul>
+            <li>Expanded membership from 200 to 500 students of NSF's Louis Stokes Alliance for Minority Participation</li>
+            <li>Developed outreach initiatives for underrepresented STEM groups, while fostering an inclusive campus community</li>
+          </ul>
+        </div>
+
       </div>
     </div>
+
+    
     
     <div class="section-wrapper">
       <div class="flap">
@@ -809,6 +839,21 @@ body.light-mode .project-detail::before {
             <li>Drove a 34% increase in average event attendance and expanded membership by over 73 individuals</li>
           </ul>
         </div>
+
+        <div class="experience-card">
+          <h5>Treasurer's Committee Officer</h5>
+          <div class="tech">SHPE Student Branch - NJIT | Sep 2025 - Present</div>
+          <div class="skill-tags">
+            <span class="skill-tag">Budget PLanning</span>
+            <span class="skill-tag">Outreach</span>
+            <span class="skill-tag">Member Recruitment</span>
+          </div>
+          <ul>
+            <li>Assisting in finances, fundraising, and coordination for the professional development of Hispanic and Latinx students</li>
+            <li>Assisted in finances for over 50 members to attend the SHPE 2025 National Convention</li>
+          </ul>
+        </div>
+
       </div>
     </div>
 
@@ -955,6 +1000,23 @@ body.light-mode .project-detail::before {
           <ul>
             <li>Built an AI scheduling tool with Google Gemini API to parse and organize tasks from Google Calendar, Canvas, and user inputs</li>
             <li>Developed Flask backend with MongoDB, integrating Google Calendar (OAuth 2.0) and custom Canvas API to unify user events</li>
+          </ul>
+        </div>
+
+        <div class="project-card clickable" data-project-id="fire-robot">
+          <h5>Firefighting Robot</h5>
+          <div class="skill-tags">
+            <span class="skill-tag">C++</span>
+            <span class="skill-tag">Arduino</span>
+            <span class="skill-tag">Sensors</span>
+            <span class="skill-tag">Soldering</span>
+            <span class="skill-tag">Systems Design</span>
+          </div>
+          <ul>
+            <li>Designed and built an autonomous robot to detect and extinguish fires.</li>
+            <li>Integrated flame sensors with an Arduino microcontroller to coordinate hardware.</li>
+            <li>Programmed servo motors, DC gear motors, and a high-voltage water pump in C++.</li>
+            <li>Demonstrated proficiency in robotics, sensor integration, and mechanical systems design.</li>
           </ul>
         </div>
 
@@ -1134,6 +1196,36 @@ body.light-mode .project-detail::before {
           <li>Collaborative features for group projects</li>
           <li>Analytics dashboard showing productivity patterns</li>
         </ul>
+      </div>
+    </div>
+
+        <div id="fire-robot-detail" class="project-detail">
+      <button class="close-btn">✕ Close</button>
+      <div class="project-detail-content">
+        <h2>Firefighting Robot</h2>
+        <div class="skill-tags">
+          <span class="skill-tag">C++</span>
+          <span class="skill-tag">Arduino</span>
+          <span class="skill-tag">Sensors</span>
+          <span class="skill-tag">Soldering</span>
+          <span class="skill-tag">Robotics</span>
+        </div>
+        
+        <h3>Overview</h3>
+        <p>A hands-on robotics project (Nov 2024 - Dec 2024) to design, build, and program an autonomous vehicle capable of navigating to a fire, detecting its presence, and extinguishing it without human intervention.</p>
+        
+        <h3>The Challenge</h3>
+        <p>The goal was to create a self-contained system from scratch. This required integrating multiple electromechanical components—flame sensors, motors for movement, a servo for aiming, and a water pump—and programming them all to work together reliably on a single Arduino microcontroller.</p>
+        
+        <h3>Technical Implementation</h3>
+        <p>The robot's 'brain' is an Arduino microcontroller programmed in C++. It processes real-time data from flame sensors to detect a fire's presence. Once a fire is identified, the Arduino coordinates a series of actions:</p>
+        <ul>
+          <li>It maneuvers the robot into position using DC gear motors.</li>
+          <li>It aims a water nozzle precisely at the flame using a servo motor.</li>
+          <li>It activates a high-voltage water pump to extinguish the fire.</li>
+        </ul>
+        <p>This project required a complete end-to-end design, from soldering and circuit assembly to programming the control logic for all hardware components.</p>
+
       </div>
     </div>
 
