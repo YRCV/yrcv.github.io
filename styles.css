@@ -1,0 +1,731 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@200;300;400&display=swap');
+
+:root {
+  --bg-gradient: linear-gradient(to bottom, #000000 0%, #0a0e27 50%, #1a1a3e 100%);
+  --text-primary: #fff;
+  --text-secondary: #dbdbdb;
+  --text-tertiary: #666;
+  --text-medium: #ccc;
+  --accent-color: #ffd700;
+  --accent-glow: rgba(255, 215, 0, 0.8);
+  --accent-bg-hover: rgba(255, 215, 0, 0.1);
+  
+  --bg-overscroll: #000000;
+
+  --bg-nav: rgba(10, 14, 39, 0.8);
+  --bg-panel: rgba(20, 20, 35, 0.5);
+  --bg-card-hover: #111;
+  
+  --border-primary: #333;
+  --border-hover: #666;
+
+  --bg-scrollbar-track: #0a0e27;
+  --bg-scrollbar-thumb: #333;
+  --bg-scrollbar-thumb-hover: #555;
+  
+  --tag-text: #eee;
+  --tag-bg: rgba(255, 255, 255, 0.08);
+  --tag-border: rgba(255, 255, 255, 0.15);
+  --tag-bg-hover: rgba(255, 255, 255, 0.12);
+}
+
+body.light-mode {
+  --bg-gradient: linear-gradient(to bottom, #a8c0ff 0%, #fbc2eb 100%);
+  --text-primary: #111;
+  --text-secondary: #555;
+  --text-tertiary: #777;
+  --text-medium: #333;
+  --accent-color: #f57c00; /* A "sun" orange */
+  --accent-glow: rgba(245, 124, 0, 0.7);
+  --accent-bg-hover: rgba(245, 124, 0, 0.1);
+  
+  --bg-nav: rgba(255, 255, 255, 0.8);
+  --bg-panel: rgba(255, 255, 255, 0.5);
+  --bg-card-hover: #f9f9f9;
+  
+  --border-primary: #ddd;
+  --border-hover: #bbb;
+
+  --bg-scrollbar-track: #eee;
+  --bg-scrollbar-thumb: #ccc;
+  --bg-scrollbar-thumb-hover: #aaa;
+  
+  --tag-text: #222;
+  --tag-bg: rgba(0, 0, 0, 0.05);
+  --tag-border: rgba(0, 0, 0, 0.1);
+  --tag-bg-hover: rgba(0, 0, 0, 0.1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  background-color: var(--bg-overscroll);
+  transition: background-color 0.5s ease;
+}
+
+body {
+  background: var(--bg-gradient);
+  color: var(--text-primary);
+  font-family: 'Source Code Pro', monospace;
+  font-weight: 350;
+  line-height: 1.8;
+  padding: 40px 20px;
+  position: relative;
+  overflow-x: hidden;
+  transition: background 0.5s ease, color 0.5s ease;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(2px 2px at 20px 30px, #eee, transparent),
+    radial-gradient(2px 2px at 60px 70px, #fff, transparent),
+    radial-gradient(1px 1px at 50px 50px, #ddd, transparent),
+    radial-gradient(1px 1px at 130px 80px, #fff, transparent),
+    radial-gradient(2px 2px at 90px 10px, #eee, transparent),
+    radial-gradient(1px 1px at 200px 150px, #ddd, transparent),
+    radial-gradient(2px 2px at 170px 100px, #fff, transparent),
+    radial-gradient(1px 1px at 300px 50px, #eee, transparent);
+  background-repeat: repeat;
+  background-size: 400px 400px;
+  animation: twinkle 3s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.6;
+  transition: opacity 0.5s ease;
+}
+
+body.light-mode::before {
+  opacity: 0; 
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 0.3; }
+}
+
+/* --- Floating Moon / Sun --- */
+.theme-toggle {
+  position: fixed;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  /* Moon (default) */
+  background: radial-gradient(circle at 30% 30%, #fff9e6, var(--accent-color));
+  box-shadow: 
+    0 0 20px var(--accent-glow),
+    0 0 40px var(--accent-glow),
+    0 0 60px var(--accent-glow),
+    inset -10px -10px 20px rgba(139, 69, 19, 0.1);
+  /* z-index: 99; */
+  z-index: 1; /* Lowered to sit behind content */
+  pointer-events: auto;
+  top: 10%;
+  right: 10%;
+  transition: transform 0.3s ease-out, background 0.5s ease, box-shadow 0.5s ease;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+/* Sun (light mode) */
+body.light-mode .theme-toggle {
+  background: radial-gradient(circle at 50% 50%, #ffeb3b, var(--accent-color));
+  box-shadow: 
+    0 0 20px var(--accent-glow),
+    0 0 40px var(--accent-glow),
+    0 0 60px var(--accent-glow);
+}
+
+/* --- Bite Effect --- */
+.theme-toggle.bite-1::after {
+  content: '';
+  position: absolute;
+  /* New bite shape */
+  width: 50px; 
+  height: 60px;
+  border-radius: 50%;
+  background: var(--bg-gradient); /* Uses variable */
+  top: 10px;
+  right: -20px;
+  box-shadow: inset 2px 2px 8px rgba(0, 0, 0, 0.3);
+  transition: background 0.5s ease;
+}
+.theme-toggle.bite-2::after {
+  content: ''; position: absolute;
+  width: 60px; 
+  height: 70px; 
+  border-radius: 50%;
+  background: var(--bg-gradient); 
+  top: 5px; 
+  right: -15px;
+  box-shadow: inset 2px 2px 8px rgba(0, 0, 0, 0.3);
+  transition: background 0.5s ease;
+}
+.theme-toggle.bite-3::after {
+  content: ''; position: absolute; 
+  width: 70px; 
+  height: 80px; 
+  border-radius: 50%;
+  background: var(--bg-gradient); 
+  top: 0px; 
+  right: -10px;
+  box-shadow: inset 2px 2px 8px rgba(0, 0, 0, 0.3);
+  transition: background 0.5s ease;
+}
+.theme-toggle.bite-4::after {
+  content: ''; position: absolute; 
+  width: 80px; 
+  height: 90px; 
+  border-radius: 50%;
+  background: var(--bg-gradient); 
+  top: -5px; 
+  right: -5px;
+  box-shadow: inset 2px 2px 8px rgba(0, 0, 0, 0.3);
+  transition: background 0.5s ease;
+}
+
+/* Hide bite effect in light mode */
+body.light-mode .theme-toggle.bite-1::after,
+body.light-mode .theme-toggle.bite-2::after,
+body.light-mode .theme-toggle.bite-3::after,
+body.light-mode .theme-toggle.bite-4::after {
+  display: none;
+}
+
+/* Moon Craters */
+.theme-toggle::before {
+  content: '';
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(139, 69, 19, 0.15);
+  top: 25px;
+  left: 20px;
+  transition: opacity 0.5s ease;
+}
+.theme-toggle::after {
+  content: '';
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(139, 69, 19, 0.1);
+  top: 50px;
+  left: 45px;
+  transition: opacity 0.5s ease;
+}
+
+/* Hide craters in light mode */
+body.light-mode .theme-toggle::before,
+body.light-mode .theme-toggle::after {
+  opacity: 0;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 40px auto 0 auto; /* Pushes content down below nav */
+  position: relative;
+  z-index: 2;
+}
+/* --- Stylized Scrollbar (Glow Theme) --- */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-scrollbar-track); /* This is the dark "space" background */
+}
+::-webkit-scrollbar-thumb {
+  background-color: var(--accent-color); /* The yellow/orange accent */
+  border-radius: 10px;
+  border: 2px solid var(--bg-scrollbar-track); /* Creates a "floating" effect */
+  box-shadow: 0 0 8px var(--accent-glow); /* The GLOW! */
+  transition: box-shadow 0.3s ease;
+}
+::-webkit-scrollbar-thumb:hover {
+  box-shadow: 0 0 12px var(--accent-glow), 0 0 4px var(--accent-glow); /* Brighter glow on hover */
+}
+/* --- End Scrollbar --- */
+
+
+/* --- Page Navigation --- */
+nav.main-nav {
+  position: absolute; /* Changed from fixed */
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  background-color: transparent; /* Made transparent */
+  z-index: 100;
+  transition: background-color 0.5s ease, border-bottom 0.5s ease;
+}
+
+nav.main-nav a {
+  font-family: 'Source Code Pro', monospace;
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 400;
+  margin: 0 20px;
+  transition: color 0.3s;
+}
+
+nav.main-nav a span {
+  color: var(--text-tertiary);
+  transition: color 0.3s;
+}
+
+nav.main-nav a:hover {
+  color: var(--text-primary);
+  opacity: 1;
+}
+
+nav.main-nav a.active {
+  color: var(--accent-color);
+}
+
+/* --- Nav Theme Toggle Button --- */
+.nav-theme-toggle {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 20px;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  padding: 0;
+  margin-left: 20px;
+  line-height: 1;
+}
+
+.nav-theme-toggle:hover {
+  color: var(--accent-color);
+}
+
+.nav-theme-toggle::before {
+  content: '🌙'; /* Moon for dark mode */
+}
+
+body.light-mode .nav-theme-toggle::before {
+  content: '☀️'; /* Sun for light mode */
+}
+/* --- End Nav Theme Toggle Button --- */
+
+
+/* --- Page Visibility --- */
+.page {
+  display: none;
+  pointer-events: none; /* Make page background unclickable */
+}
+.page.active {
+  display: block;
+  pointer-events: auto; /* <-- THIS IS THE FIX. Active pages should be clickable. */
+}
+/* --- End Page Styles --- */
+
+
+h4 {
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+  cursor: default;
+}
+
+p {
+  margin-bottom: 20px;
+  font-size: 16px;
+}
+
+.section-wrapper p:last-child {
+  margin-bottom: 0;
+}
+
+a {
+  color: var(--text-primary);
+  text-decoration: underline;
+  transition: opacity 0.3s, color 0.3s;
+}
+
+a:hover {
+  opacity: 0.7;
+}
+
+.flap {
+  margin-bottom: 10px;
+}
+
+.flap h4 {
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+.flap h4::before {
+  content: '✦ ';
+  color: var(--accent-color);
+  margin-right: 10px;
+  font-size: 18px;
+  transition: color 0.5s ease;
+}
+
+.section-wrapper {
+  background-color: var(--bg-panel);
+  border: 1px solid var(--border-primary);
+  border-radius: 20px;
+  padding: 30px;
+  margin-bottom: 40px;
+  backdrop-filter: blur(4px);
+  transition: background-color 0.5s ease, border 0.5s ease;
+  pointer-events: auto; /* Make panels clickable again */
+}
+
+.projects-list, .experience-list {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin-bottom: 0;
+}
+
+.project-card, .experience-card {
+  border: 1px solid var(--border-primary);
+  padding: 20px;
+  transition: border-color 0.3s, background-color 0.3s, border 0.5s ease;
+  border-radius: 10px;
+}
+
+.project-card.clickable {
+  cursor: pointer;
+}
+
+.project-card.clickable:hover {
+  border-color: var(--border-hover);
+  background-color: var(--bg-card-hover);
+}
+
+.experience-card:hover {
+  border-color: var(--border-hover);
+}
+
+.project-card h5, .experience-card h5 {
+  font-size: 16px;
+  font-weight: 400;
+  margin-bottom: 8px;
+  transition: color 0.3s ease;
+}
+
+.project-card:hover h5,
+.experience-card:hover h5 {
+  color: var(--accent-color);
+}
+
+
+/* --- NEW SKILL TAG STYLES --- */
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.skill-tag {
+  color: var(--tag-text);
+  background-color: var(--tag-bg);
+  border: 1px solid var(--tag-border);
+  font-family: 'Source Code Pro', monospace;
+  font-size: 12px;
+  font-weight: 400;
+  padding: 3px 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+.skill-tag:hover {
+  background-color: var(--tag-bg-hover);
+}
+.skills-section .skill-tag {
+  font-size: 14px;
+  padding: 5px 12px;
+}
+.project-detail .skill-tags {
+  margin-bottom: 30px;
+}
+/* --- END SKILL TAG STYLES --- */
+
+
+.project-card .tech, .experience-card .tech {
+  /* This class is no longer used for tags, but we'll keep it for the text-based date */
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+  font-size: 14px; /* Ensure font size is consistent */
+  transition: color 0.5s ease;
+}
+
+.project-short-desc {
+  font-size: 14px;
+  color: var(--text-medium);
+  margin-bottom: 0;
+  line-height: 1.6;
+  transition: color 0.5s ease;
+}
+
+.all-projects-link {
+  display: inline-block;
+  margin-top: 20px;
+  font-size: 14px;
+  color: var(--accent-color);
+  text-decoration: none;
+  border: 1px solid var(--border-primary);
+  padding: 8px 15px;
+  border-radius: 5px;
+  transition: all 0.3s;
+}
+.all-projects-link:hover {
+  background-color: var(--accent-bg-hover);
+  border-color: var(--accent-color);
+  opacity: 1;
+}
+
+.project-card ul, .experience-card ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.project-card li, .experience-card li {
+  font-size: 14px;
+  margin-bottom: 8px;
+  padding-left: 15px;
+  position: relative;
+}
+
+.project-card li:before, .experience-card li:before {
+  content: "▹";
+  position: absolute;
+  left: 0;
+  color: var(--text-tertiary);
+  transition: color 0.5s ease;
+}
+
+.contact-links {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.contact-links a,
+.contact-links .email-copy {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.contact-links .email-copy {
+  cursor: pointer;
+  color: var(--text-primary);
+  text-decoration: underline;
+  transition: opacity 0.3s, color 0.3s;
+}
+
+.contact-links .email-copy:hover {
+  opacity: 0.7;
+}
+
+.contact-links svg {
+  position: center;
+  top: -1px; 
+}
+
+.header-name {
+  font-size: 18px;
+  margin-bottom: 40px;
+}
+
+.tagline {
+  font-size: 20px;
+  margin-bottom: 30px;
+}
+
+.project-detail {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--bg-gradient);
+  z-index: 1000;
+  overflow-y: auto;
+  padding: 40px 20px;
+  transition: background 0.5s ease;
+}
+
+.project-detail::before {
+  /* This is the starfield for the modal */
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(2px 2px at 20px 30px, #eee, transparent),
+    radial-gradient(2px 2px at 60px 70px, #fff, transparent),
+    radial-gradient(1px 1px at 50px 50px, #ddd, transparent),
+    radial-gradient(1px 1px at 130px 80px, #fff, transparent),
+    radial-gradient(2px 2px at 90px 10px, #eee, transparent),
+    radial-gradient(1px 1px at 200px 150px, #ddd, transparent),
+    radial-gradient(2px 2px at 170px 100px, #fff, transparent),
+    radial-gradient(1px 1px at 300px 50px, #eee, transparent);
+  background-repeat: repeat;
+  background-size: 400px 400px;
+  animation: twinkle 3s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.6;
+  transition: opacity 0.5s ease;
+}
+
+body.light-mode .project-detail::before {
+  opacity: 0; /* Hide stars in modal light mode */
+}
+
+
+.project-detail.active {
+  display: block;
+}
+
+.project-detail-content {
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+  /* Add padding at the bottom to avoid the close button */
+  padding-bottom: 80px;
+}
+
+.close-btn {
+  position: fixed;
+  bottom: 20px; /* Changed from 'top' */
+  right: 20px;
+  background: var(--bg-panel); /* Added background to match theme */
+  border: 1px solid var(--border-hover);
+  border-radius: 5px; /* Added border-radius to match theme */
+  color: var(--text-primary);
+  font-family: 'Source Code Pro', monospace;
+  font-size: 14px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: all 0.3s;
+  z-index: 1001;
+  backdrop-filter: blur(4px); /* Added blur to match theme */
+}
+
+.close-btn:hover {
+  border-color: var(--accent-color); /* Changed to accent color on hover */
+  background-color: var(--accent-bg-hover); /* Changed to accent hover */
+}
+
+.project-detail h2 {
+  font-size: 24px;
+  font-weight: 400;
+  margin-bottom: 10px;
+}
+
+.project-detail .tech {
+  /* This class is no longer used for tags, but we'll keep it for the text-based date */
+  color: var(--text-secondary);
+  font-size: 14px;
+  margin-bottom: 30px;
+  transition: color 0.5s ease;
+}
+
+.project-detail h3 {
+  font-size: 18px;
+  font-weight: 400;
+  margin-top: 30px;
+  margin-bottom: 15px;
+}
+
+.project-detail ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.project-detail li {
+  font-size: 16px;
+  margin-bottom: 12px;
+  padding-left: 20px;
+  position: relative;
+}
+
+.project-detail li:before {
+  content: "▹";
+  position: absolute;
+  left: 0;
+  color: var(--text-tertiary);
+  transition: color 0.5s ease;
+}
+
+@media (max-width: 768px) {
+  body {
+    padding: 20px 15px;
+  }
+  
+  .container {
+    margin-top: 60px; /* More space for nav */
+  }
+
+  nav.main-nav {
+    padding: 15px;
+  }
+  nav.main-nav a {
+    margin: 0 10px;
+    font-size: 12px;
+  }
+  
+  .nav-theme-toggle {
+    margin-left: 10px;
+    font-size: 18px;
+  }
+
+  .theme-toggle {
+    width: 50px;
+    height: 50px;
+    top: 10px;
+    right: 10px;
+  }
+  
+  /* Mobile Bite Effect */
+  .theme-toggle.bite-1::after {
+    width: 30px; height: 35px; top: 8px; right: -10px; border-radius: 50%;
+  }
+  .theme-toggle.bite-2::after {
+    width: 35px; height: 40px; top: 5px; right: -8px; border-radius: 50%;
+  }
+  .theme-toggle.bite-3::after {
+    width: 40px; height: 50px; top: 0px; right: -5px; border-radius: 50%;
+  }
+  .theme-toggle.bite-4::after {
+    width: 50px; height: 60px; top: -5px; right: -5px; border-radius: 50%;
+  }
+
+
+  .section-wrapper {
+    padding: 25px 20px;
+  }
+  
+  .close-btn {
+    /* Make button wider on mobile for easier tapping */
+    left: 20px;
+    right: 20px;
+    width: calc(100% - 40px);
+    text-align: center;
+  }
+}
