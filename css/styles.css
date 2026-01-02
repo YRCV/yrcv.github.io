@@ -97,23 +97,50 @@ body.light-mode .custom-cursor {
     border-color: rgba(0,0,0, 0.3);
 }
 
-.mode-toggle button {
-    padding: 0.5rem 1rem;
+.mode-toggle {
+    margin-top: 2rem;
+}
+
+.mode-toggle .mode-button {
+    display: flex;
+    padding: 0;
     background: transparent;
-    border: none;
+    border: 2px solid;
     color: inherit;
     cursor: pointer;
     font-family: inherit;
-    font-size: 0.8rem;
+    font-size: 1rem;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.mode-toggle .mode-icon {
+    padding: 0.25rem 0.75rem;
     transition: all 0.3s ease;
 }
 
-body.dark-mode .mode-toggle button.dark-button {
+.mode-toggle .dark-icon, .mode-toggle .light-icon {
+    display: none;
+}
+body.dark-mode .mode-toggle .dark-icon {
+    display: block;
     background: white;
     color: black;
+    margin-left: 2.25rem;
 }
 
-body.light-mode .mode-toggle button.light-button {
+body.light-mode .mode-toggle .light-icon {
+    display: block;
     background: black;
     color: white;
+    margin-right: 2.25rem;
+}
+
+body.dark-mode .mode-toggle .mode-button {
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+body.light-mode .mode-toggle .mode-button {
+    border-color: rgba(0, 0, 0, 0.3);
 }

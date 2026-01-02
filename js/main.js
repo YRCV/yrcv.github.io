@@ -1,5 +1,18 @@
+function toggleMode() {
+    const currentMode = document.body.className.includes('dark') ? 'dark' : 'light';
+    const newMode = currentMode === 'dark' ? 'light' : 'dark';
+    setMode(newMode);
+}
+
 function setMode(mode) {
     document.body.className = mode + '-mode';
+    localStorage.setItem('preferredMode', mode);
+}
+
+function initMode() {
+    const savedMode = localStorage.getItem('preferredMode');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    setMode(savedMode || (prefersDark ? 'dark' : 'light'));
 }
 
 const container = document.getElementById('pcbContainer');
@@ -27,3 +40,5 @@ container.addEventListener('mouseleave', () => {
     reveal.style.clipPath = 'circle(0px at 50% 50%)';
     cursor.style.opacity = '0';
 });
+
+initMode();
