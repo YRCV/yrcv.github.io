@@ -161,7 +161,7 @@ body.light-mode .pcb-reveal {
 }
 
 body.light-mode .custom-cursor {
-    border-color: rgba(0,0,0, 0.3);
+    border-color: rgba(0, 0, 0, 0.3);
 }
 
 /* Modde toggle button */
@@ -187,7 +187,8 @@ body.light-mode .custom-cursor {
     transition: all 0.3s ease;
 }
 
-.mode-toggle .dark-icon, .mode-toggle .light-icon {
+.mode-toggle .dark-icon,
+.mode-toggle .light-icon {
     display: none;
 }
 
@@ -218,12 +219,187 @@ body.light-mode .mode-toggle .mode-button {
     margin-top: 3rem;
 }
 
+
 .page-mode-toggle {
     position: fixed;
     top: 2rem;
     right: 2rem;
     margin: 0;
     z-index: 100;
+}
+
+/* About Page Styles */
+.about-container {
+    max-width: 800px;
+    width: 100%;
+    padding: 0 2rem;
+}
+
+/* Profile Section */
+.profile-section {
+    text-align: center;
+    margin-bottom: 4rem;
+    animation: fadeIn 0.6s ease-out;
+}
+
+.profile-picture {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 1.5rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+body.dark-mode .profile-picture {
+    border: 3px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px rgba(255, 255, 255, 0.1);
+}
+
+body.light-mode .profile-picture {
+    border: 3px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.profile-picture:hover {
+    transform: scale(1.05);
+}
+
+body.dark-mode .profile-picture:hover {
+    box-shadow: 0 12px 48px rgba(255, 255, 255, 0.15);
+}
+
+body.light-mode .profile-picture:hover {
+    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.15);
+}
+
+.profile-name {
+    font-size: 2rem;
+    font-weight: 300;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.05em;
+}
+
+.profile-title {
+    font-size: 1.1rem;
+    opacity: 0.7;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
+
+/* Bio Section */
+.bio-section {
+    margin-bottom: 4rem;
+    animation: fadeIn 0.8s ease-out;
+}
+
+.section-heading {
+    font-size: 1.5rem;
+    font-weight: 300;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-size: 1rem;
+    opacity: 0.8;
+}
+
+.bio-content p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+    opacity: 0.9;
+    font-family: Georgia, serif;
+}
+
+/* Gallery Section */
+.gallery-section {
+    margin-bottom: 4rem;
+    animation: fadeIn 1s ease-out;
+}
+
+.gallery-grid {
+    column-count: 3;
+    column-gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 1.5rem;
+    break-inside: avoid;
+    display: inline-block;
+    width: 100%;
+}
+
+body.dark-mode .gallery-item {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+body.light-mode .gallery-item {
+    background: rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.gallery-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.gallery-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1.5rem 1rem;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+    color: white;
+    font-size: 0.95rem;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    pointer-events: none;
+}
+
+.gallery-item:hover {
+    transform: translateY(-4px);
+}
+
+body.dark-mode .gallery-item:hover {
+    box-shadow: 0 12px 32px rgba(255, 255, 255, 0.15);
+}
+
+body.light-mode .gallery-item:hover {
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+}
+
+.gallery-item:hover .gallery-image {
+    transform: scale(1.05);
+}
+
+.gallery-item:hover .gallery-caption {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* Responsive */
@@ -234,5 +410,23 @@ body.light-mode .mode-toggle .mode-button {
 
     .pcb-container {
         width: 100%;
+    }
+
+    .profile-picture {
+        width: 140px;
+        height: 140px;
+    }
+
+    .profile-name {
+        font-size: 1.6rem;
+    }
+
+    .bio-content p {
+        font-size: 1rem;
+    }
+
+    .gallery-grid {
+        column-count: 2;
+        column-gap: 1rem;
     }
 }

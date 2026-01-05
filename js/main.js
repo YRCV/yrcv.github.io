@@ -17,6 +17,78 @@ function initMode() {
     setMode(savedMode || (prefersDark ? 'dark' : 'light'));
 }
 
+// --- About Page Data Loading ---
+async function loadAboutData() {
+    try {
+        const response = await fetch('data/about.json');
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+
+        // Populate profile section
+        const profileImage = document.getElementById('profileImage');
+        if (profileImage) {
+            profileImage.src = data.profileImage;
+            profileImage.alt = data.name;
+        }
+
+        const profileName = document.getElementById('profileName');
+        if (profileName) profileName.textContent = data.name;
+
+        const profileTitle = document.getElementById('profileTitle');
+        if (profileTitle) profileTitle.textContent = data.title;
+
+        // Populate bio paragraphs
+        const bioContent = document.getElementById('bioContent');
+        if (bioContent) {
+            bioContent.innerHTML = '';
+            data.bio.forEach(paragraph => {
+                const p = document.createElement('p');
+                p.textContent = paragraph;
+                bioContent.appendChild(p);
+            });
+        }
+
+        // Populate gallery
+        const galleryGrid = document.getElementById('galleryGrid');
+        if (galleryGrid && data.gallery) {
+            galleryGrid.innerHTML = '';
+            data.gallery.forEach(image => {
+                const galleryItem = document.createElement('div');
+                galleryItem.className = 'gallery-item';
+
+                const img = document.createElement('img');
+                img.src = image.src;
+                img.alt = image.alt;
+                img.className = 'gallery-image';
+                galleryItem.appendChild(img);
+
+                // Add caption overlay if description exists
+                if (image.alt) {
+                    const caption = document.createElement('div');
+                    caption.className = 'gallery-caption';
+                    caption.textContent = image.alt;
+                    galleryItem.appendChild(caption);
+                }
+
+                galleryGrid.appendChild(galleryItem);
+            });
+        }
+
+        console.log('About page data loaded successfully');
+
+    } catch (error) {
+        console.error('Error loading about data:', error);
+        const bioContent = document.getElementById('bioContent');
+        if (bioContent) {
+            bioContent.innerHTML = '<p>Error loading content. Please refresh the page.</p>';
+        }
+    }
+}
+
 // --- PCB Reveal Effect ---
 function initPCBEffect() {
     const container = document.getElementById('pcbContainer');
@@ -82,6 +154,8 @@ async function loadPage(pageName) {
 
         if (pageName === 'landing') {
             initPCBEffect();
+        } else if (pageName === 'about') {
+            loadAboutData();
         } else if (pageName === 'blog') {
             //loadBlogPosts();
         }
@@ -119,7 +193,7 @@ window.addEventListener('popstate', () => {
 // Initialize the right page
 function initRouter() {
     const hash = window.location.hash.substring(1);
-    
+
     if (!hash || hash === 'landing') {
         window.history.replaceState({}, '', window.location.pathname);
         loadPage('landing');

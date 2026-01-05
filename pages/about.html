@@ -1,12 +1,28 @@
 <section id="about">
     <a href="#landing" class="back-home">← Home</a>
 
-    <div class="section-content">
-        <h1 class="section-title">About</h1>
-        <p>I'm a passionate Computer Engineering student.</p>
+    <div class="about-container">
+        <!-- Profile Section -->
+        <div class="profile-section">
+            <img id="profileImage" class="profile-picture" src="" alt="Profile Picture">
+            <h1 id="profileName" class="profile-name"></h1>
+            <p id="profileTitle" class="profile-title"></p>
+        </div>
+
+        <!-- Bio Section -->
+        <div class="bio-section">
+            <h2 class="section-heading">About Me</h2>
+            <div id="bioContent" class="bio-content"></div>
+        </div>
+
+        <!-- Gallery Section -->
+        <div class="gallery-section">
+            <h2 class="section-heading">Gallery</h2>
+            <div id="galleryGrid" class="gallery-grid"></div>
+        </div>
     </div>
 
-    <div class="mode-toggle">
+    <div class="mode-toggle page-mode-toggle">
         <button class="mode-button" onclick="toggleMode()">
             <span class="mode-icon dark-icon">◐</span>
             <span class="mode-icon light-icon">◐</span>
