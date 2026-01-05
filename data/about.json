@@ -1,3 +1,128 @@
 {
-    "bio": "Hi I'm Yahil"
+    "name": "Yahil Corcino Valdez",
+    "title": "Computer Engineering Student",
+    "profileImage": "assets/profile.jpg",
+    "bio": [
+        "Hello, I'm Yahil! I'm majoring in Computer Engineering and minoring in Applied Math at NJIT. I'm very passionate about what im doing and I'm constantly thinking about making things. I've gained experience in building software, hardware, and bringing both togetehr to make cool things.",
+        "I was born and raised in Santiago de los Caballeros, Dominican Republic 🇩🇴. This has shaped the person I am today and the way I approach every problem and opportunity, I'm incredibly proud of my roots and it makes my journey all the more meaningful.",
+        "When I'm not coding or working on projects, I like to spend my time having fun and learning things. I enjoy drawing (included a few below) as well as photography and lately I've been learning freeform wiring art."
+    ],
+    "gallery": [
+        {
+            "src": "assets/gallery/photo1.jpg",
+            "alt": "Photo 1"
+        },
+        {
+            "src": "assets/gallery/photo2.jpg",
+            "alt": "Photo 2"
+        },
+        {
+            "src": "assets/gallery/photo3.jpg",
+            "alt": "Photo 3"
+        },
+        {
+            "src": "assets/gallery/photo4.jpg",
+            "alt": "Photo 4"
+        },
+        {
+            "src": "assets/gallery/photo5.jpg",
+            "alt": "Photo 5"
+        },
+        {
+            "src": "assets/gallery/photo6.jpg",
+            "alt": "Photo 6"
+        },
+        {
+            "src": "assets/gallery/photo7.jpg",
+            "alt": "Photo 7"
+        },
+        {
+            "src": "assets/gallery/photo8.jpg",
+            "alt": "Photo 8"
+        },
+        {
+            "src": "assets/gallery/photo9.jpg",
+            "alt": "Photo 9"
+        },
+        {
+            "src": "assets/gallery/photo10.jpg",
+            "alt": "Photo 10"
+        },
+        {
+            "src": "assets/gallery/photo11.jpg",
+            "alt": "Photo 11"
+        },
+        {
+            "src": "assets/gallery/photo12.jpg",
+            "alt": "Photo 12"
+        },
+        {
+            "src": "assets/gallery/photo13.jpg",
+            "alt": "Photo 13"
+        },
+        {
+            "src": "assets/gallery/photo14.jpg",
+            "alt": "Photo 14"
+        },
+        {
+            "src": "assets/gallery/photo15.jpg",
+            "alt": "Photo 15"
+        },
+        {
+            "src": "assets/gallery/photo16.jpg",
+            "alt": "Photo 16"
+        },
+        {
+            "src": "assets/gallery/photo17.jpg",
+            "alt": "Photo 17"
+        },
+        {
+            "src": "assets/gallery/photo18.jpg",
+            "alt": "Photo 18"
+        },
+        {
+            "src": "assets/gallery/photo19.jpg",
+            "alt": "Photo 19"
+        },
+        {
+            "src": "assets/gallery/photo20.jpg",
+            "alt": "Photo 20"
+        },
+        {
+            "src": "assets/gallery/photo21.jpg",
+            "alt": "Photo 21"
+        },
+        {
+            "src": "assets/gallery/photo22.jpg",
+            "alt": "Photo 22"
+        },
+        {
+            "src": "assets/gallery/photo23.jpg",
+            "alt": "Photo 23"
+        },
+        {
+            "src": "assets/gallery/photo24.jpg",
+            "alt": "Photo 24"
+        },
+        {
+            "src": "assets/gallery/photo25.jpg",
+            "alt": "Photo 25"
+        },
+        {
+            "src": "assets/gallery/photo26.jpg",
+            "alt": "Photo 26"
+        },
+        {
+            "src": "assets/gallery/photo27.jpg",
+            "alt": "Photo 27"
+        },
+        {
+            "src": "assets/gallery/photo28.jpg",
+            "alt": "Photo 28"
+        },
+        {
+            "src": "assets/gallery/photo29.jpg",
+            "alt": "Photo 29"
+        }
+    ]
 }
