@@ -1,3 +1,57 @@
 {
-    "skills": "C++"
+    "categories": [
+        {
+            "name": "Languages",
+            "skills": [
+                "C++",
+                "Python",
+                "JavaScript",
+                "HTML",
+                "CSS",
+                "SQL"
+            ]
+        },
+        {
+            "name": "Frontend",
+            "skills": [
+                "React",
+                "React Native",
+                "Tailwind CSS",
+                "Expo",
+                "Vite"
+            ]
+        },
+        {
+            "name": "Backend & Data",
+            "skills": [
+                "Node.js",
+                "Flask",
+                "MongoDB",
+                "Supabase",
+                "Pandas",
+                "NumPy"
+            ]
+        },
+        {
+            "name": "Tools & Platforms",
+            "skills": [
+                "Git",
+                "GitHub",
+                "AWS",
+                "OAuth 2.0",
+                "WebSockets",
+                "Xcode",
+                "Excel"
+            ]
+        },
+        {
+            "name": "Hardware & Engineering",
+            "skills": [
+                "KiCAD",
+                "Microcontrollers",
+                "Soldering",
+                "MATLAB"
+            ]
+        }
+    ]
 }

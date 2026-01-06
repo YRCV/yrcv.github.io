@@ -178,6 +178,52 @@ function createExperienceCard(exp) {
     return card;
 }
 
+// Load Skills Page Data
+async function loadSkillsData() {
+    try {
+        const response = await fetch('data/skills.json');
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+
+        const container = document.getElementById('skills-content');
+        if (container && data.categories) {
+            container.innerHTML = '';
+
+            data.categories.forEach(category => {
+                const categoryDiv = document.createElement('div');
+                categoryDiv.className = 'skill-category';
+
+                const categoryName = document.createElement('div');
+                categoryName.className = 'skill-category-name';
+                categoryName.textContent = category.name;
+                categoryDiv.appendChild(categoryName);
+
+                const skillList = document.createElement('div');
+                skillList.className = 'skill-list';
+
+                category.skills.forEach(skill => {
+                    const skillBox = document.createElement('div');
+                    skillBox.className = 'skill-box';
+                    skillBox.textContent = skill;
+                    skillList.appendChild(skillBox);
+                });
+
+                categoryDiv.appendChild(skillList);
+                container.appendChild(categoryDiv);
+            });
+        }
+
+        console.log('Skills page data loaded successfully');
+
+    } catch (error) {
+        console.error('Error loading skills data:', error);
+    }
+}
+
 // --- PCB Reveal Effect ---
 function initPCBEffect() {
     const container = document.getElementById('pcbContainer');
@@ -248,6 +294,8 @@ async function loadPage(pageName) {
             loadAboutData();
         } else if (pageName === 'experience') {
             loadExperienceData();
+        } else if (pageName === 'skills') {
+            loadSkillsData();
         } else if (pageName === 'blog') {
             //loadBlogPosts();
         }
