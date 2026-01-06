@@ -12,45 +12,35 @@
             ]
         },
         {
-            "name": "Frontend",
+            "name": "Web & Mobile",
             "skills": [
                 "React",
                 "React Native",
+                "Node.js",
+                "Flask",
                 "Tailwind CSS",
                 "Expo",
                 "Vite"
             ]
         },
         {
-            "name": "Backend & Data",
-            "skills": [
-                "Node.js",
-                "Flask",
-                "MongoDB",
-                "Supabase",
-                "Pandas",
-                "NumPy"
-            ]
-        },
-        {
-            "name": "Tools & Platforms",
+            "name": "Tools & Technologies",
             "skills": [
                 "Git",
                 "GitHub",
+                "MongoDB",
+                "Supabase",
                 "AWS",
                 "OAuth 2.0",
                 "WebSockets",
                 "Xcode",
-                "Excel"
-            ]
-        },
-        {
-            "name": "Hardware & Engineering",
-            "skills": [
+                "Pandas",
+                "NumPy",
+                "Excel",
                 "KiCAD",
+                "MATLAB",
                 "Microcontrollers",
-                "Soldering",
-                "MATLAB"
+                "Soldering"
             ]
         }
     ]

@@ -80,12 +80,55 @@ async function loadAboutData() {
 
         console.log('About page data loaded successfully');
 
+        // Load skills into About page
+        loadSkillsIntoAbout();
+
     } catch (error) {
         console.error('Error loading about data:', error);
         const bioContent = document.getElementById('bioContent');
         if (bioContent) {
             bioContent.innerHTML = '<p>Error loading content. Please refresh the page.</p>';
         }
+    }
+}
+
+// Load Skills into About Page
+async function loadSkillsIntoAbout() {
+    try {
+        const response = await fetch('data/skills.json');
+        if (!response.ok) return;
+
+        const data = await response.json();
+        const container = document.getElementById('skillsContent');
+
+        if (container && data.categories) {
+            container.innerHTML = '';
+
+            data.categories.forEach(category => {
+                const categoryDiv = document.createElement('div');
+                categoryDiv.className = 'skill-category';
+
+                const categoryName = document.createElement('div');
+                categoryName.className = 'skill-category-name';
+                categoryName.textContent = category.name;
+                categoryDiv.appendChild(categoryName);
+
+                const skillList = document.createElement('div');
+                skillList.className = 'skill-list';
+
+                category.skills.forEach(skill => {
+                    const skillBox = document.createElement('div');
+                    skillBox.className = 'skill-box';
+                    skillBox.textContent = skill;
+                    skillList.appendChild(skillBox);
+                });
+
+                categoryDiv.appendChild(skillList);
+                container.appendChild(categoryDiv);
+            });
+        }
+    } catch (error) {
+        console.error('Error loading skills into about page:', error);
     }
 }
 

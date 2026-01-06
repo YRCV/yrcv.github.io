@@ -423,6 +423,69 @@ body.light-mode .gallery-item:hover {
     transform: translateY(0);
 }
 
+/* Skills Section on About Page */
+.skills-section {
+    margin-top: 4rem;
+}
+
+.skills-content-about {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.skills-content-about .skill-category {
+    margin-bottom: 0;
+}
+
+.skills-content-about .skill-category-name {
+    font-size: 0.85rem;
+    font-weight: 400;
+    margin-bottom: 1rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    opacity: 0.6;
+}
+
+.skills-content-about .skill-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+}
+
+.skills-content-about .skill-box {
+    padding: 0.4rem 0.85rem;
+    border-radius: 3px;
+    font-size: 0.85rem;
+    font-weight: 400;
+    transition: all 0.2s ease;
+    cursor: default;
+}
+
+body.dark-mode .skills-content-about .skill-box {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+body.light-mode .skills-content-about .skill-box {
+    background: rgba(0, 0, 0, 0.025);
+    border: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.skills-content-about .skill-box:hover {
+    transform: translateY(-1px);
+}
+
+body.dark-mode .skills-content-about .skill-box:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+body.light-mode .skills-content-about .skill-box:hover {
+    background: rgba(0, 0, 0, 0.04);
+    border-color: rgba(0, 0, 0, 0.2);
+}
+
 /* Contact Page Styles */
 .contact-container {
     max-width: 600px;
