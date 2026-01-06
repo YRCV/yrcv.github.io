@@ -89,6 +89,95 @@ async function loadAboutData() {
     }
 }
 
+// Load Experience Page Data
+async function loadExperienceData() {
+    try {
+        const response = await fetch('data/experience.json');
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+
+        // Separate experiences by type
+        const workExperiences = data.experiences.filter(exp => exp.type === 'work' || exp.type === 'teaching');
+        const leadershipExperiences = data.experiences.filter(exp => exp.type === 'leadership');
+
+        // Populate Work section
+        const workContainer = document.getElementById('work-experiences');
+        if (workContainer) {
+            workContainer.innerHTML = '';
+            workExperiences.forEach(exp => {
+                workContainer.appendChild(createExperienceCard(exp));
+            });
+        }
+
+        // Populate Leadership section
+        const leadershipContainer = document.getElementById('leadership-experiences');
+        if (leadershipContainer) {
+            leadershipContainer.innerHTML = '';
+            leadershipExperiences.forEach(exp => {
+                leadershipContainer.appendChild(createExperienceCard(exp));
+            });
+        }
+
+        console.log('Experience page data loaded successfully');
+
+    } catch (error) {
+        console.error('Error loading experience data:', error);
+    }
+}
+
+function createExperienceCard(exp) {
+    const card = document.createElement('div');
+    card.className = 'experience-card';
+
+    // Create header
+    const header = document.createElement('div');
+    header.className = 'experience-header';
+
+    const titleGroup = document.createElement('div');
+    titleGroup.className = 'experience-title-group';
+
+    const role = document.createElement('h3');
+    role.className = 'experience-role';
+    role.textContent = exp.role;
+    titleGroup.appendChild(role);
+
+    const company = document.createElement('div');
+    company.className = 'experience-company';
+    company.textContent = exp.company;
+    titleGroup.appendChild(company);
+
+    header.appendChild(titleGroup);
+
+    const date = document.createElement('div');
+    date.className = 'experience-date';
+    date.textContent = `${exp.startDate} – ${exp.endDate}`;
+    header.appendChild(date);
+
+    card.appendChild(header);
+
+    // Create description
+    if (exp.description && exp.description.length > 0) {
+        const description = document.createElement('div');
+        description.className = 'experience-description';
+
+        const ul = document.createElement('ul');
+        exp.description.forEach(item => {
+            const li = document.createElement('li');
+            li.textContent = item;
+            ul.appendChild(li);
+        });
+
+        description.appendChild(ul);
+        card.appendChild(description);
+    }
+
+    return card;
+}
+
 // --- PCB Reveal Effect ---
 function initPCBEffect() {
     const container = document.getElementById('pcbContainer');
@@ -157,6 +246,8 @@ async function loadPage(pageName) {
             initPCBEffect();
         } else if (pageName === 'about') {
             loadAboutData();
+        } else if (pageName === 'experience') {
+            loadExperienceData();
         } else if (pageName === 'blog') {
             //loadBlogPosts();
         }

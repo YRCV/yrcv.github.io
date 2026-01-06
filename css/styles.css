@@ -514,6 +514,101 @@ body.light-mode .contact-icon {
     font-weight: 400;
 }
 
+/* Experience Page Styles */
+.experience-container {
+    max-width: 800px;
+    width: 100%;
+    padding: 0 2rem;
+}
+
+.page-title {
+    font-size: 2rem;
+    font-weight: 300;
+    margin-bottom: 3rem;
+    letter-spacing: 0.05em;
+    text-align: center;
+}
+
+.experience-section {
+    margin-bottom: 3rem;
+}
+
+.section-heading {
+    font-size: 1rem;
+    font-weight: 400;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    opacity: 0.8;
+}
+
+.experience-grid {
+    display: grid;
+    gap: 2rem;
+}
+
+.experience-card {
+    transition: opacity 0.3s ease;
+}
+
+.experience-card:hover {
+    opacity: 0.7;
+}
+
+.experience-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 0.75rem;
+    gap: 2rem;
+}
+
+.experience-title-group {
+    flex: 1;
+    min-width: 0;
+}
+
+.experience-role {
+    font-size: 1.1rem;
+    font-weight: 400;
+    margin-bottom: 0.25rem;
+}
+
+.experience-company {
+    font-size: 0.95rem;
+    opacity: 0.6;
+}
+
+.experience-date {
+    font-size: 0.85rem;
+    opacity: 0.5;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.experience-description ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.experience-description li {
+    position: relative;
+    padding-left: 1.25rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
+    font-size: 0.95rem;
+    opacity: 0.8;
+}
+
+.experience-description li::before {
+    content: '–';
+    position: absolute;
+    left: 0;
+    opacity: 0.5;
+}
+
 /* Fade-in animation */
 @keyframes fadeIn {
     from {

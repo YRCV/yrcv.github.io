@@ -1,3 +1,54 @@
 {
-    "bio": "PlotPointe"
+    "experiences": [
+        {
+            "company": "Educational Opportunity Program - NJIT",
+            "role": "C++ Tutor",
+            "type": "teaching",
+            "startDate": "Sep 2025",
+            "endDate": "Present",
+            "description": [
+                "Provide one-on-one C++ tutoring to EOP students, creating custom quizzes and practice problems tailored to individual learning needs."
+            ]
+        },
+        {
+            "company": "Educational Opportunity Program - NJIT",
+            "role": "Computer Science Teaching Assistant",
+            "type": "teaching",
+            "startDate": "Jun 2025",
+            "endDate": "Aug 2025",
+            "description": [
+                "Instructed 36 first-generation EOP students in Python programming; all students improved scores between midterm and final through twice-weekly recitations and 16 hours of weekly tutoring."
+            ]
+        },
+        {
+            "company": "IEEE – NJIT Student Branch",
+            "role": "Director of Outreach",
+            "type": "leadership",
+            "startDate": "Mar 2025",
+            "endDate": "Present",
+            "description": [
+                "Led planning of technical workshops and networking events, increasing average attendance by 34% and expanding membership by 102 students."
+            ]
+        },
+        {
+            "company": "SHPE – NJIT Chapter",
+            "role": "Software Developer",
+            "type": "leadership",
+            "startDate": "Sep 2025",
+            "endDate": "Present",
+            "description": [
+                "Founding developer for SHPE NJIT mobile app, delivering production-quality code in a professional development environment. Deploying to X students."
+            ]
+        },
+        {
+            "company": "Plot Pointe",
+            "role": "Data Analyst",
+            "type": "work",
+            "startDate": "Jul 2023",
+            "endDate": "Aug 2024",
+            "description": [
+                "Analyzed social media engagement metrics with Python, developing data-driven strategies that generated 300M+ Instagram views in 6 months and 20M+ views on sponsored content."
+            ]
+        }
+    ]
 }
