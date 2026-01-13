@@ -47,7 +47,7 @@ async function loadAboutData() {
             bioContent.innerHTML = '';
             data.bio.forEach(paragraph => {
                 const p = document.createElement('p');
-                p.textContent = paragraph;
+                p.innerHTML = paragraph;
                 bioContent.appendChild(p);
             });
         }

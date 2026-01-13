@@ -339,11 +339,57 @@ body.light-mode .profile-picture:hover {
 }
 
 .bio-content p {
-    font-size: 1.1rem;
-    line-height: 1.8;
+    font-size: 1.05rem;
+    line-height: 1.7;
     margin-bottom: 1.5rem;
     opacity: 0.9;
-    font-family: Georgia, serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+}
+
+.bio-content strong {
+    font-weight: 600;
+    opacity: 1;
+}
+
+.highlight-yellow {
+    color: #ffd700;
+}
+
+body.light-mode .highlight-yellow {
+    color: #ffa200;
+}
+
+.highlight-red {
+    color: #ff453a;
+}
+
+body.light-mode .highlight-red {
+    color: #f10c00;
+}
+
+.highlight-blue {
+    color: #00a4fc;
+}
+
+body.light-mode .highlight-blue {
+    color: #003db8;
+}
+
+/* Quote Section */
+.quote-section {
+    margin: 4rem 0;
+    text-align: center;
+}
+
+.favorite-quote {
+    font-size: 1.3rem;
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.6;
+    opacity: 0.8;
+    margin: 0;
+    padding: 0;
+    border: none;
 }
 
 /* Gallery Section */
