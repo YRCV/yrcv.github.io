@@ -221,6 +221,127 @@ function createExperienceCard(exp) {
     return card;
 }
 
+// Load Projects Page Data
+async function loadProjectsData() {
+    try {
+        const response = await fetch('data/projects.json');
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        const grid = document.getElementById('projects-grid');
+
+        if (grid && data.projects) {
+            grid.innerHTML = '';
+
+            data.projects.forEach(project => {
+                const card = document.createElement('div');
+                card.className = 'project-card';
+
+                // Project image container with blurred background
+                const imageContainer = document.createElement('div');
+                imageContainer.className = 'project-image-container';
+
+                // Blurred background image
+                const blurredImg = document.createElement('img');
+                blurredImg.src = project.image;
+                blurredImg.className = 'project-image-blur';
+                imageContainer.appendChild(blurredImg);
+
+                // Main clear image on top
+                const img = document.createElement('img');
+                img.src = project.image;
+                img.alt = project.title;
+                img.className = 'project-image';
+                imageContainer.appendChild(img);
+                card.appendChild(imageContainer);
+
+                // Project content
+                const content = document.createElement('div');
+                content.className = 'project-content';
+
+                // Title with icons
+                const titleRow = document.createElement('div');
+                titleRow.className = 'project-title-row';
+
+                const title = document.createElement('h3');
+                title.className = 'project-title';
+                title.textContent = project.title;
+                titleRow.appendChild(title);
+
+
+
+                // Icons container
+                const iconsContainer = document.createElement('div');
+                iconsContainer.className = 'project-icons';
+
+                if (project.github) {
+                    const githubLink = document.createElement('a');
+                    githubLink.href = project.github;
+                    githubLink.target = '_blank';
+                    githubLink.className = 'project-icon-link';
+                    githubLink.innerHTML = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                    </svg>`;
+                    iconsContainer.appendChild(githubLink);
+                }
+
+                if (project.demo) {
+                    const demoLink = document.createElement('a');
+                    demoLink.href = project.demo;
+                    demoLink.target = '_blank';
+                    demoLink.className = 'project-icon-link';
+                    demoLink.innerHTML = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                        <polyline points="15 3 21 3 21 9"></polyline>
+                        <line x1="10" y1="14" x2="21" y2="3"></line>
+                    </svg>`;
+                    iconsContainer.appendChild(demoLink);
+                }
+
+                titleRow.appendChild(iconsContainer);
+                content.appendChild(titleRow);
+
+                // Subtitle (if exists) - below title
+                if (project.subtitle) {
+                    const subtitle = document.createElement('div');
+                    subtitle.className = project.highlightSubtitle ? 'project-subtitle highlight' : 'project-subtitle';
+                    subtitle.textContent = project.subtitle;
+                    content.appendChild(subtitle);
+                }
+
+                // Description
+                const description = document.createElement('p');
+                description.className = 'project-description';
+                description.textContent = project.description;
+                content.appendChild(description);
+
+                // Tech stack
+                const techContainer = document.createElement('div');
+                techContainer.className = 'project-tech';
+                project.tech.forEach(tech => {
+                    const tag = document.createElement('span');
+                    tag.className = 'tech-tag';
+                    tag.textContent = tech;
+                    techContainer.appendChild(tag);
+                });
+                content.appendChild(techContainer);
+
+
+                card.appendChild(content);
+                grid.appendChild(card);
+            });
+        }
+
+        console.log('Projects page data loaded successfully');
+
+    } catch (error) {
+        console.error('Error loading projects data:', error);
+    }
+}
+
 // Load Skills Page Data
 async function loadSkillsData() {
     try {
@@ -339,6 +460,8 @@ async function loadPage(pageName) {
             loadExperienceData();
         } else if (pageName === 'skills') {
             loadSkillsData();
+        } else if (pageName === 'projects') {
+            loadProjectsData();
         } else if (pageName === 'blog') {
             //loadBlogPosts();
         }

@@ -1,13 +1,13 @@
 {
     "experiences": [
         {
-            "company": "Educational Opportunity Program - NJIT",
+            "company": "NJIT",
             "role": "C++ Tutor",
             "type": "teaching",
             "startDate": "Sep 2025",
             "endDate": "Present",
             "description": [
-                "Provide one-on-one C++ tutoring to EOP students, creating custom quizzes and practice problems tailored to individual learning needs."
+                "Provide one-on-one C++ tutoring to other college students, creating custom quizzes and practice problems tailored to individual learning needs."
             ]
         },
         {
@@ -27,17 +27,17 @@
             "startDate": "Mar 2025",
             "endDate": "Present",
             "description": [
-                "Led planning of technical workshops and networking events, increasing average attendance by 34% and expanding membership by 102 students."
+                "Led planning of technical workshops and networking events, increasing average attendance by 34% and expanding membership by 112 students."
             ]
         },
         {
             "company": "SHPE – NJIT Chapter",
             "role": "Software Developer",
             "type": "leadership",
-            "startDate": "Sep 2025",
+            "startDate": "Dec 2025",
             "endDate": "Present",
             "description": [
-                "Founding developer for SHPE NJIT mobile app, delivering production-quality code in a professional development environment. Deploying to X students."
+                "Founding developer for SHPE NJIT mobile app, delivering production-quality code in a professional development environment. Deploying to over 300 active students soon."
             ]
         },
         {

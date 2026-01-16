@@ -1,3 +1,107 @@
 {
-    "project-name": "DataCool"
+    "projects": [
+        {
+            "title": "SHPE App",
+            "subtitle": "SHPE NJIT",
+            "highlightSubtitle": false,
+            "description": "Founding developer for SHPE NJIT mobile app, delivering production-quality code. 75+ Hours over winter break, releasing soon.",
+            "image": "assets/projects/7shpeapp.png",
+            "tech": [
+                "React Native",
+                "Expo",
+                "Supabase",
+                "JavaScript"
+            ],
+            "github": "",
+            "demo": ""
+        },
+        {
+            "title": "IEEE NJIT Website",
+            "subtitle": "IEEE NJIT",
+            "highlightSubtitle": false,
+            "description": "Official website for IEEE NJIT Student Branch, showcasing events, projects, and community engagement. Deploying soon.",
+            "image": "assets/projects/6ieeesite.png",
+            "tech": [
+                "React",
+                "JavaScript",
+                "CSS"
+            ],
+            "github": "",
+            "demo": ""
+        },
+        {
+            "title": "Portfolio Website",
+            "subtitle": "You are here",
+            "highlightSubtitle": false,
+            "description": "Personal portfolio website showcasing projects, experience, and skills with a sick design.",
+            "image": "assets/projects/5portfoliosite.png",
+            "tech": [
+                "HTML",
+                "CSS",
+                "JavaScript"
+            ],
+            "github": "https://github.com/yrcv/yrcv.github.io",
+            "demo": ""
+        },
+        {
+            "title": "Series++",
+            "subtitle": "SeriexHax_25",
+            "highlightSubtitle": true,
+            "description": "AI-powered chatbot platform for group conversations with intelligent nudging and memory features.",
+            "image": "assets/projects/4series.png",
+            "tech": [
+                "Python",
+                "Kafka",
+                "MongoDB",
+                "Gemini API"
+            ],
+            "github": "https://github.com/B3rK-3/series_hax",
+            "demo": ""
+        },
+        {
+            "title": "DataCool",
+            "subtitle": "Claude Hackathon - 1st Overall",
+            "highlightSubtitle": true,
+            "description": "Data optimization and analysis tool for efficient data processing and visualization.",
+            "image": "https://github.com/GurmeherSingh/DataCool/blob/main/assets/post_optimization.PNG?raw=true",
+            "tech": [
+                "C++",
+                "Python",
+                "OpenCV"
+            ],
+            "github": "https://github.com/yrcv/DataCool",
+            "demo": ""
+        },
+        {
+            "title": "Horae",
+            "subtitle": "Girlhacks 25",
+            "highlightSubtitle": true,
+            "description": "AI scheduling tool integrating Google Gemini API to parse and organize tasks from multiple platforms with intelligent task classification and automatic task decomposition.",
+            "image": "assets/projects/2horae.png",
+            "tech": [
+                "Flask",
+                "MongoDB",
+                "Google Gemini API",
+                "OAuth 2.0"
+            ],
+            "github": "",
+            "demo": ""
+        },
+        {
+            "title": "SmartBin",
+            "subtitle": "ECE Dept. Competition Nominee",
+            "highlightSubtitle": true,
+            "description": "IoT device that detects trashcan fullness to optimize janitorial efficiency with AWS-hosted dashboard and 1.7-year battery life.",
+            "image": "assets/projects/1smartbin.png",
+            "tech": [
+                "C++",
+                "Python",
+                "Flask",
+                "AWS",
+                "ESP32"
+            ],
+            "github": "",
+            "demo": ""
+        }
+    ]
 }
