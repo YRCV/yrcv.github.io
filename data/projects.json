@@ -4,7 +4,7 @@
             "title": "SHPE App",
             "subtitle": "SHPE NJIT",
             "highlightSubtitle": false,
-            "description": "Founding developer for SHPE NJIT mobile app, delivering production-quality code. 75+ Hours over winter break, releasing soon.",
+            "description": "Event tracking & registration, user posts and comments, ranking system for engagement, etc to enhance SHPE NJIT chapter. I put 100+ hours of dev over break.",
             "image": "assets/projects/7shpeapp.png",
             "tech": [
                 "React Native",
