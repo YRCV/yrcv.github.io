@@ -18,15 +18,17 @@ function initMode() {
 }
 
 // --- About Page Data Loading ---
-async function loadAboutData() {
+async function loadAboutData(preloadedData) {
     try {
-        const response = await fetch('data/about.json');
+        let data = preloadedData;
 
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+        if (!data) {
+            const response = await fetch('data/about.json');
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            data = await response.json();
         }
-
-        const data = await response.json();
 
         // Populate profile section
         const profileImage = document.getElementById('profileImage');
@@ -64,6 +66,7 @@ async function loadAboutData() {
                 img.src = image.src;
                 img.alt = image.alt;
                 img.className = 'gallery-image';
+                img.loading = 'lazy';
                 galleryItem.appendChild(img);
 
                 // Add caption overlay if description exists
@@ -78,7 +81,7 @@ async function loadAboutData() {
             });
         }
 
-        console.log('About page data loaded successfully');
+
 
         // Load skills into About page
         loadSkillsIntoAbout();
@@ -133,15 +136,17 @@ async function loadSkillsIntoAbout() {
 }
 
 // Load Experience Page Data
-async function loadExperienceData() {
+async function loadExperienceData(preloadedData) {
     try {
-        const response = await fetch('data/experience.json');
+        let data = preloadedData;
 
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+        if (!data) {
+            const response = await fetch('data/experience.json');
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            data = await response.json();
         }
-
-        const data = await response.json();
 
         // Separate experiences by type
         const workExperiences = data.experiences.filter(exp => exp.type === 'work' || exp.type === 'teaching');
@@ -165,7 +170,7 @@ async function loadExperienceData() {
             });
         }
 
-        console.log('Experience page data loaded successfully');
+
 
     } catch (error) {
         console.error('Error loading experience data:', error);
@@ -222,15 +227,18 @@ function createExperienceCard(exp) {
 }
 
 // Load Projects Page Data
-async function loadProjectsData() {
+async function loadProjectsData(preloadedData) {
     try {
-        const response = await fetch('data/projects.json');
+        let data = preloadedData;
 
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+        if (!data) {
+            const response = await fetch('data/projects.json');
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            data = await response.json();
         }
 
-        const data = await response.json();
         const grid = document.getElementById('projects-grid');
 
         if (grid && data.projects) {
@@ -248,6 +256,7 @@ async function loadProjectsData() {
                 const blurredImg = document.createElement('img');
                 blurredImg.src = project.image;
                 blurredImg.className = 'project-image-blur';
+                blurredImg.loading = 'lazy';
                 imageContainer.appendChild(blurredImg);
 
                 // Main clear image on top
@@ -255,6 +264,7 @@ async function loadProjectsData() {
                 img.src = project.image;
                 img.alt = project.title;
                 img.className = 'project-image';
+                img.loading = 'lazy';
                 imageContainer.appendChild(img);
                 card.appendChild(imageContainer);
 
@@ -335,7 +345,7 @@ async function loadProjectsData() {
             });
         }
 
-        console.log('Projects page data loaded successfully');
+
 
     } catch (error) {
         console.error('Error loading projects data:', error);
@@ -343,15 +353,17 @@ async function loadProjectsData() {
 }
 
 // Load Skills Page Data
-async function loadSkillsData() {
+async function loadSkillsData(preloadedData) {
     try {
-        const response = await fetch('data/skills.json');
+        let data = preloadedData;
 
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+        if (!data) {
+            const response = await fetch('data/skills.json');
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            data = await response.json();
         }
-
-        const data = await response.json();
 
         const container = document.getElementById('skills-content');
         if (container && data.categories) {
@@ -381,7 +393,7 @@ async function loadSkillsData() {
             });
         }
 
-        console.log('Skills page data loaded successfully');
+
 
     } catch (error) {
         console.error('Error loading skills data:', error);
@@ -416,7 +428,7 @@ function initPCBEffect() {
         cursor.style.opacity = '0';
     });
 
-    console.log('PCB effect initialized');
+
 }
 
 // --- Router for page navigation ---
@@ -444,24 +456,41 @@ async function loadPage(pageName) {
     }
 
     try {
-        const response = await fetch(routes[pageName]);
-        if (!response.ok) throw new Error(`Page ${pageName} not found`);
+        // Start fetching HTML immediately
+        const htmlPromise = fetch(routes[pageName]).then(response => {
+            if (!response.ok) throw new Error(`Page ${pageName} not found`);
+            return response.text();
+        });
 
-        const html = await response.text();
+        // Start fetching Data immediately (Parallel Fetching)
+        let dataPromise = Promise.resolve(null);
+        if (pageName === 'about') {
+            dataPromise = fetch('data/about.json').then(r => r.json()).catch(() => null);
+        } else if (pageName === 'experience') {
+            dataPromise = fetch('data/experience.json').then(r => r.json()).catch(() => null);
+        } else if (pageName === 'projects') {
+            dataPromise = fetch('data/projects.json').then(r => r.json()).catch(() => null);
+        } else if (pageName === 'skills') {
+            dataPromise = fetch('data/skills.json').then(r => r.json()).catch(() => null);
+        }
+
+        // Wait for both to complete
+        const [html, data] = await Promise.all([htmlPromise, dataPromise]);
+
         content.innerHTML = html;
 
-        console.log(`Loaded page: ${pageName}`);
+
 
         if (pageName === 'landing') {
             initPCBEffect();
         } else if (pageName === 'about') {
-            loadAboutData();
+            loadAboutData(data);
         } else if (pageName === 'experience') {
-            loadExperienceData();
+            loadExperienceData(data);
         } else if (pageName === 'skills') {
-            loadSkillsData();
+            loadSkillsData(data);
         } else if (pageName === 'projects') {
-            loadProjectsData();
+            loadProjectsData(data);
         } else if (pageName === 'blog') {
             //loadBlogPosts();
         }
@@ -510,7 +539,7 @@ function initRouter() {
 
 // --- Initialize everything ---
 function init() {
-    console.log('Initializing site...');
+
     initMode();
     initRouter();
 }
