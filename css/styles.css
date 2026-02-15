@@ -130,20 +130,20 @@ section:not(#landing) {
 }
 
 body.dark-mode .pcb-base {
-    background-image: url('../assets/xray.png');
+    background-image: url('../assets/xray.webp');
 }
 
 body.dark-mode .pcb-reveal {
-    background-image: url('../assets/realistic.png');
+    background-image: url('../assets/realistic.webp');
     clip-path: circle(0px at 50% 50%);
 }
 
 body.light-mode .pcb-base {
-    background-image: url('../assets/realistic.png');
+    background-image: url('../assets/realistic.webp');
 }
 
 body.light-mode .pcb-reveal {
-    background-image: url('../assets/xray.png');
+    background-image: url('../assets/xray.webp');
     background-color: #0a0a0a;
     clip-path: circle(0px at 50% 50%);
 }
