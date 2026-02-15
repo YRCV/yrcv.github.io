@@ -549,7 +549,7 @@ body.light-mode .skills-content-about .skill-box:hover {
 .project-card {
     border-radius: 8px;
     overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
     cursor: pointer;
 }
 
@@ -563,16 +563,14 @@ body.light-mode .project-card {
     border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-.project-card:hover {
-    transform: translateY(-8px);
-}
-
 body.dark-mode .project-card:hover {
-    box-shadow: 0 16px 40px rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.06);
 }
 
 body.light-mode .project-card:hover {
-    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.15);
+    border-color: rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.06);
 }
 
 .project-image-container {
@@ -608,6 +606,11 @@ body.light-mode .project-image-blur {
     width: 100%;
     height: 200px;
     object-fit: contain;
+    transition: transform 0.1s ease;
+}
+
+.project-card:hover .project-image {
+    transform: scale(1.05);
 }
 
 .project-content {
