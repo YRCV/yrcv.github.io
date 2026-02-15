@@ -986,6 +986,34 @@ body.light-mode .skill-box:hover {
 
 /* Responsive */
 @media (max-width: 768px) {
+
+    /* Reduce global section padding on mobile */
+    section:not(#landing) {
+        padding: 5rem 1.25rem 3rem;
+    }
+
+    /* Remove redundant specific container padding on mobile */
+    .about-container,
+    .experience-container,
+    .projects-container,
+    .skills-container,
+    .contact-container {
+        padding: 0;
+    }
+
+    /* Prevent awkward wrapping in experience headers */
+    .experience-header {
+        flex-direction: column;
+        gap: 0.25rem;
+        align-items: flex-start;
+    }
+
+    .experience-date {
+        opacity: 0.6;
+        font-size: 0.8rem;
+        margin-bottom: 0.5rem;
+    }
+
     .tagline {
         font-size: 1.75rem;
     }
