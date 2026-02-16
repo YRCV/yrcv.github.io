@@ -5,6 +5,11 @@
     box-sizing: border-box;
 }
 
+::selection {
+    background-color: oklch(61.53% 0.1675 262.04 / 10%);
+    color: oklch(61.53% 0.1675 262.04);
+}
+
 body {
     min-height: 100vh;
     font-family: 'SF MONO', 'Fira Code', monospace;
