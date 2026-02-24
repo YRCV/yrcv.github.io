@@ -168,6 +168,32 @@
             right: 1rem;
             z-index: 10;
         }
+
+        .resume-link {
+            background-color: #ffffff;
+            color: #0a0a0a !important;
+            border-color: #ffffff;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        body.light-mode .resume-link {
+            background-color: #0a0a0a;
+            color: #ffffff !important;
+            border-color: #0a0a0a;
+        }
+
+        .resume-link:hover {
+            background-color: #e6e6e6;
+            border-color: #e6e6e6;
+            transform: translateY(-2px);
+        }
+
+        body.light-mode .resume-link:hover {
+            background-color: #1a1a1a;
+            border-color: #1a1a1a;
+            transform: translateY(-2px);
+        }
     </style>
 </head>
 
@@ -211,7 +237,7 @@
                     <span class="link-title">Portfolio</span>
                     <span class="link-subtext">yrcv.org</span>
                 </a>
-                <a href="#" class="link-item resume-link">
+                <a href="assets/YahilCorcinoResume.pdf" target="_blank" class="link-item resume-link">
                     <span class="link-title">Resume</span>
                 </a>
             </div>
