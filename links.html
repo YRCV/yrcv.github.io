@@ -148,10 +148,17 @@
             background-color: rgba(0, 0, 0, 0.02);
         }
 
-        .link-item span {
+        .link-title {
             font-size: 0.95rem;
             font-weight: 400;
             letter-spacing: 0.05em;
+        }
+
+        .link-subtext {
+            font-size: 0.8rem;
+            opacity: 0.5;
+            margin-top: 0.25rem;
+            letter-spacing: 0.02em;
         }
 
         /* Mode toggle placement specifically for the links page */
@@ -188,23 +195,24 @@
 
             <div class="links-list">
                 <a href="mailto:yrc@njit.edu" class="link-item">
-                    <span>Email</span>
-                </a>
-                <a href="tel:+" class="link-item">
-                    <span>Number</span>
+                    <span class="link-title">Email</span>
+                    <span class="link-subtext">yrc@njit.edu</span>
                 </a>
                 <a href="https://linkedin.com/in/yahil-corcino" target="_blank" rel="noopener noreferrer"
                     class="link-item">
-                    <span>LinkedIn</span>
+                    <span class="link-title">LinkedIn</span>
+                    <span class="link-subtext">linkedin.com/in/yahil-corcino</span>
                 </a>
                 <a href="https://github.com/YRCV" target="_blank" rel="noopener noreferrer" class="link-item">
-                    <span>GitHub</span>
+                    <span class="link-title">GitHub</span>
+                    <span class="link-subtext">github.com/YRCV</span>
                 </a>
                 <a href="https://yrcv.github.io" class="link-item">
-                    <span>Portfolio</span>
+                    <span class="link-title">Portfolio</span>
+                    <span class="link-subtext">yrcv.org</span>
                 </a>
-                <a href="#" class="link-item">
-                    <span>Resume</span>
+                <a href="#" class="link-item resume-link">
+                    <span class="link-title">Resume</span>
                 </a>
             </div>
         </div>
