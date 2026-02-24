@@ -164,10 +164,10 @@
 
         /* Mode toggle placement specifically for the links page */
         .mode-toggle-links {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            z-index: 10;
+            margin-top: 1.5rem;
+            display: flex;
+            justify-content: center;
+            width: 100%;
         }
 
         .resume-link {
@@ -202,15 +202,10 @@
 </head>
 
 <body class="dark-mode">
-    <div class="mode-toggle mode-toggle-links">
-        <button class="mode-button" onclick="toggleLocalMode()">
-            <span class="mode-icon dark-icon">◐</span>
-            <span class="mode-icon light-icon">◐</span>
-        </button>
-    </div>
-
     <div id="links-page">
         <div class="links-card">
+
+
             <div class="links-banner">
                 <div class="links-pcb"></div>
             </div>
@@ -245,6 +240,13 @@
                     <span class="link-title">Resume</span>
                 </a>
             </div>
+        </div>
+
+        <div class="mode-toggle mode-toggle-links">
+            <button class="mode-button" onclick="toggleLocalMode()">
+                <span class="mode-icon dark-icon">◐</span>
+                <span class="mode-icon light-icon">◐</span>
+            </button>
         </div>
     </div>
 
