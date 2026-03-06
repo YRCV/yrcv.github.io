@@ -407,6 +407,46 @@ function initPCBEffect() {
     const cursor = document.getElementById('cursor');
 
     const REVEAL_RADIUS = 45;
+    let sweepDone = false;
+
+    // Intro sweep: animate circle from left → right → collapse
+    function runIntroSweep() {
+        const rect = container.getBoundingClientRect();
+        const sweepDuration = 1800; // ms for the left→right pass
+        const fadeDuration = 400;  // ms to collapse after
+        const startY = rect.height / 2;
+        const startX = REVEAL_RADIUS;
+        const endX = rect.width - REVEAL_RADIUS;
+        let startTime = null;
+
+        function sweepStep(ts) {
+            if (!startTime) startTime = ts;
+            const elapsed = ts - startTime;
+            const t = Math.min(elapsed / sweepDuration, 1);
+            // ease-in-out cubic
+            const eased = t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+            const x = startX + (endX - startX) * eased;
+
+            reveal.style.clipPath = `circle(${REVEAL_RADIUS}px at ${x}px ${startY}px)`;
+
+            if (t < 1) {
+                requestAnimationFrame(sweepStep);
+            } else {
+                // Collapse back
+                reveal.style.transition = `clip-path ${fadeDuration}ms ease`;
+                reveal.style.clipPath = 'circle(0px at 50% 50%)';
+                setTimeout(() => {
+                    reveal.style.transition = '';
+                    sweepDone = true;
+                }, fadeDuration);
+            }
+        }
+
+        requestAnimationFrame(sweepStep);
+    }
+
+    // Small delay so the page has settled before the sweep
+    setTimeout(runIntroSweep, 600);
 
     container.addEventListener('mousemove', (e) => {
         const rect = container.getBoundingClientRect();
@@ -427,8 +467,6 @@ function initPCBEffect() {
         reveal.style.clipPath = 'circle(0px at 50% 50%)';
         cursor.style.opacity = '0';
     });
-
-
 }
 
 // --- Router for page navigation ---
