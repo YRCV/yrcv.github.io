@@ -446,7 +446,12 @@ function initPCBEffect() {
     }
 
     // Small delay so the page has settled before the sweep
-    setTimeout(runIntroSweep, 600);
+    // Only play up to twice per session
+    const sweepCount = parseInt(sessionStorage.getItem('pcbSweepCount') || '0', 10);
+    if (sweepCount < 2) {
+        sessionStorage.setItem('pcbSweepCount', sweepCount + 1);
+        setTimeout(runIntroSweep, 600);
+    }
 
     container.addEventListener('mousemove', (e) => {
         const rect = container.getBoundingClientRect();
