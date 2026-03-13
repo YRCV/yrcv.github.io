@@ -33,7 +33,7 @@
             "title": "Portfolio Website",
             "subtitle": "You are here",
             "highlightSubtitle": false,
-            "description": "Personal portfolio website showcasing projects, experience, and skills with a sick design.",
+            "description": "Personal portfolio. Isn't it cool?",
             "image": "assets/projects/5portfoliosite.png",
             "tech": [
                 "HTML",
@@ -62,7 +62,7 @@
             "title": "DataCool",
             "subtitle": "Claude Hackathon - 1st Overall",
             "highlightSubtitle": true,
-            "description": "Data optimization and analysis tool for efficient data processing and visualization.",
+            "description": "machine learning system that predicts server hotspots and optimizes workload distribution across data center racks",
             "image": "https://github.com/GurmeherSingh/DataCool/blob/main/assets/post_optimization.PNG?raw=true",
             "tech": [
                 "C++",
