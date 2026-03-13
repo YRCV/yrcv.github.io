@@ -269,9 +269,11 @@ function ensureProjectModal() {
     blurImg.className = 'project-modal-image-blur';
     blurImg.id = 'pm-blur';
     blurImg.alt = '';
+    blurImg.loading = 'lazy';
     const mainImg = document.createElement('img');
     mainImg.className = 'project-modal-image';
     mainImg.id = 'pm-img';
+    mainImg.loading = 'lazy';
     imageWrap.appendChild(blurImg);
     imageWrap.appendChild(mainImg);
     card.appendChild(imageWrap);
@@ -437,11 +439,23 @@ async function loadProjectsData(preloadedData) {
                 // Main clear image on top
                 const img = document.createElement('img');
                 img.src = project.image;
-                img.alt = project.title;
-                img.className = 'project-image';
+                img.alt = '';
+                img.className = 'project-image project-image--loading';
                 img.loading = 'lazy';
+
+                const revealCard = () => {
+                    img.classList.remove('project-image--loading');
+                    card.classList.remove('project-card--skeleton');
+                };
+                img.addEventListener('load', revealCard, { once: true });
+                img.addEventListener('error', revealCard, { once: true });
+
                 imageContainer.appendChild(img);
                 card.appendChild(imageContainer);
+
+                // Start in skeleton state
+                card.classList.add('project-card--skeleton');
+
 
                 // Project content
                 const content = document.createElement('div');

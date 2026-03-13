@@ -578,6 +578,47 @@ body.light-mode .project-card:hover {
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.06);
 }
 
+/* Skeleton / loading state for project cards */
+@keyframes skeleton-pulse {
+    0% {
+        opacity: 0.5;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0.5;
+    }
+}
+
+.project-card--skeleton .project-content {
+    visibility: hidden;
+}
+
+.project-card--skeleton .project-image-container::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    animation: skeleton-pulse 1.4s ease-in-out infinite;
+}
+
+body.dark-mode .project-card--skeleton .project-image-container::after {
+    background: #1a1a1a;
+}
+
+body.light-mode .project-card--skeleton .project-image-container::after {
+    background: #e0e0e0;
+}
+
+/* Image fades in once loaded */
+.project-image--loading {
+    opacity: 0;
+}
+
+
 .project-image-container {
     position: relative;
     width: 100%;
@@ -611,7 +652,7 @@ body.light-mode .project-image-blur {
     width: 100%;
     height: 240px;
     object-fit: contain;
-    transition: transform 0.1s ease;
+    transition: transform 0.1s ease, opacity 0.35s ease;
 }
 
 .project-card:hover .project-image {
