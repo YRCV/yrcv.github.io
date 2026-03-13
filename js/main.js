@@ -226,6 +226,171 @@ function createExperienceCard(exp) {
     return card;
 }
 
+// --- Project Modal ---
+function ensureProjectModal() {
+    if (document.getElementById('project-modal-overlay')) return;
+
+    const overlay = document.createElement('div');
+    overlay.id = 'project-modal-overlay';
+    overlay.className = 'project-modal-overlay';
+
+    const backdrop = document.createElement('div');
+    backdrop.className = 'project-modal-backdrop';
+    backdrop.addEventListener('click', closeProjectModal);
+
+    const card = document.createElement('div');
+    card.className = 'project-modal-card';
+    card.id = 'project-modal-card';
+
+    const closeBtn = document.createElement('button');
+    closeBtn.className = 'project-modal-close';
+    closeBtn.innerHTML = '&times;';
+    closeBtn.addEventListener('click', closeProjectModal);
+    card.appendChild(closeBtn);
+
+    // Header (title + subtitle)
+    const header = document.createElement('div');
+    header.className = 'project-modal-header';
+    const titleEl = document.createElement('h2');
+    titleEl.className = 'project-modal-title';
+    titleEl.id = 'pm-title';
+    const subtitleEl = document.createElement('p');
+    subtitleEl.className = 'project-modal-subtitle';
+    subtitleEl.id = 'pm-subtitle';
+    header.appendChild(titleEl);
+    header.appendChild(subtitleEl);
+    card.appendChild(header);
+
+    // Image
+    const imageWrap = document.createElement('div');
+    imageWrap.className = 'project-modal-image-wrap';
+    imageWrap.id = 'pm-image-wrap';
+    const blurImg = document.createElement('img');
+    blurImg.className = 'project-modal-image-blur';
+    blurImg.id = 'pm-blur';
+    blurImg.alt = '';
+    const mainImg = document.createElement('img');
+    mainImg.className = 'project-modal-image';
+    mainImg.id = 'pm-img';
+    imageWrap.appendChild(blurImg);
+    imageWrap.appendChild(mainImg);
+    card.appendChild(imageWrap);
+
+    // Links (GitHub / Demo)
+    const linksRow = document.createElement('div');
+    linksRow.className = 'project-modal-links';
+    linksRow.id = 'pm-links';
+    card.appendChild(linksRow);
+
+    // Divider
+    const divider = document.createElement('div');
+    divider.className = 'project-modal-divider';
+    card.appendChild(divider);
+
+    // Sections
+    const sections = document.createElement('div');
+    sections.className = 'project-modal-sections';
+
+    ['problem', 'solution', 'tech'].forEach(key => {
+        const section = document.createElement('div');
+        section.className = 'project-modal-section';
+        section.id = `pm-section-${key}`;
+        const label = document.createElement('div');
+        label.className = 'project-modal-section-label';
+        label.textContent = key === 'tech' ? 'Technical Details' : key.charAt(0).toUpperCase() + key.slice(1);
+        section.appendChild(label);
+        const body = document.createElement('div');
+        body.className = 'project-modal-section-body';
+        body.id = `pm-${key}-body`;
+        section.appendChild(body);
+        sections.appendChild(section);
+    });
+
+    card.appendChild(sections);
+    overlay.appendChild(backdrop);
+    overlay.appendChild(card);
+    document.body.appendChild(overlay);
+
+    // Escape key to close
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeProjectModal();
+    });
+}
+
+function openProjectModal(project) {
+    ensureProjectModal();
+
+    // Title & subtitle
+    document.getElementById('pm-title').textContent = project.title;
+    const subtitleEl = document.getElementById('pm-subtitle');
+    subtitleEl.textContent = project.subtitle || '';
+    subtitleEl.className = 'project-modal-subtitle' + (project.highlightSubtitle ? ' highlight' : '');
+
+    // Image
+    const src = project.image || '';
+    document.getElementById('pm-blur').src = src;
+    const mainImg = document.getElementById('pm-img');
+    mainImg.src = src;
+    mainImg.alt = project.title;
+
+    // Links
+    const linksRow = document.getElementById('pm-links');
+    linksRow.innerHTML = '';
+    if (project.github) {
+        const a = document.createElement('a');
+        a.href = project.github;
+        a.target = '_blank';
+        a.rel = 'noopener noreferrer';
+        a.className = 'project-modal-link';
+        a.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg> GitHub`;
+        linksRow.appendChild(a);
+    }
+    if (project.demo) {
+        const a = document.createElement('a');
+        a.href = project.demo;
+        a.target = '_blank';
+        a.rel = 'noopener noreferrer';
+        a.className = 'project-modal-link';
+        a.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg> Demo`;
+        linksRow.appendChild(a);
+    }
+
+    // Problem
+    document.getElementById('pm-problem-body').textContent = project.problem || '-';
+    // Solution
+    document.getElementById('pm-solution-body').textContent = project.solution || '-';
+    // Tech details
+    const techBody = document.getElementById('pm-tech-body');
+    if (project.technicalDetails) {
+        techBody.textContent = project.technicalDetails;
+    } else if (project.tech && project.tech.length) {
+        // Fallback: render tech tags
+        techBody.innerHTML = '';
+        const tagsWrap = document.createElement('div');
+        tagsWrap.className = 'project-modal-tech';
+        project.tech.forEach(t => {
+            const tag = document.createElement('span');
+            tag.className = 'tech-tag';
+            tag.textContent = t;
+            tagsWrap.appendChild(tag);
+        });
+        techBody.appendChild(tagsWrap);
+    } else {
+        techBody.textContent = '-';
+    }
+
+    // Open
+    const overlay = document.getElementById('project-modal-overlay');
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeProjectModal() {
+    const overlay = document.getElementById('project-modal-overlay');
+    if (overlay) overlay.classList.remove('open');
+    document.body.style.overflow = '';
+}
+
 // Load Projects Page Data
 async function loadProjectsData(preloadedData) {
     try {
@@ -247,6 +412,12 @@ async function loadProjectsData(preloadedData) {
             data.projects.forEach(project => {
                 const card = document.createElement('div');
                 card.className = 'project-card';
+                card.style.cursor = 'pointer';
+                card.addEventListener('click', (e) => {
+                    // Don't open modal if user clicked a link icon
+                    if (e.target.closest('.project-icon-link')) return;
+                    openProjectModal(project);
+                });
 
                 // Project image container with blurred background
                 const imageContainer = document.createElement('div');
