@@ -383,12 +383,16 @@ function openProjectModal(project) {
     const overlay = document.getElementById('project-modal-overlay');
     overlay.classList.add('open');
     document.body.style.overflow = 'hidden';
+    const content = document.getElementById('content');
+    if (content) content.classList.add('modal-open');
 }
 
 function closeProjectModal() {
     const overlay = document.getElementById('project-modal-overlay');
     if (overlay) overlay.classList.remove('open');
     document.body.style.overflow = '';
+    const content = document.getElementById('content');
+    if (content) content.classList.remove('modal-open');
 }
 
 // Load Projects Page Data
