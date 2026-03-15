@@ -1,8 +1,10 @@
 
+
 // --- Mode management ---
 function toggleMode() {
     const currentMode = document.body.className.includes('dark') ? 'dark' : 'light';
     const newMode = currentMode === 'dark' ? 'light' : 'dark';
+    playClick();
     setMode(newMode);
 }
 
@@ -387,6 +389,7 @@ function openProjectModal(project) {
     document.body.style.overflow = 'hidden';
     const content = document.getElementById('content');
     if (content) content.classList.add('modal-open');
+    playOpen();
 }
 
 function closeProjectModal() {
@@ -395,6 +398,7 @@ function closeProjectModal() {
     document.body.style.overflow = '';
     const content = document.getElementById('content');
     if (content) content.classList.remove('modal-open');
+    playClose();
 }
 
 // Load Projects Page Data
@@ -741,10 +745,12 @@ function handleNavigation(event) {
         const pageName = href.substring(1);
 
         if (pageName === 'landing' || pageName === '') {
+            playClose();
             window.history.pushState({}, '', window.location.pathname);
             loadPage('landing');
         } else {
-            window.history.pushState({}, '', `#${pageName}`);
+            playNavigate();
+            window.history.pushState({}, '', '#' + pageName);
             loadPage(pageName);
         }
     }
@@ -755,6 +761,14 @@ window.addEventListener('popstate', () => {
     const hash = window.location.hash.substring(1);
     const pageName = hash || 'landing';
     loadPage(pageName);
+});
+
+// Background click sound — fires on empty/non-interactive areas
+document.addEventListener('click', function (e) {
+    const INTERACTIVE = 'a, button, input, select, textarea, label, .project-card, .mode-button, .gallery-item, .contact-link, .skill-box, .experience-card';
+    if (!e.target.closest(INTERACTIVE)) {
+        playBackground();
+    }
 });
 
 // Initialize the right page
