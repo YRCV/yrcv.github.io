@@ -796,3 +796,20 @@ if (document.readyState === 'loading') {
 } else {
     init();
 }
+
+const easter = `                                                                         
+$$\\   $$\\  $$$$$$\\   $$$$$$$\\ $$\\    $$\\ 
+$$ |  $$ |$$  __$$\\ $$  _____|\\$$\\  $$  |
+$$ |  $$ |$$ |  \\__|$$ /       \\$$\\$$  / 
+$$ |  $$ |$$ |      $$ |        \\$$$  /  
+\\$$$$$$$ |$$ |      \\$$$$$$$\\    \\$  /   
+ \\____$$ |\\__|       \\_______|    \\_/    
+$$\\   $$ |                               
+\\$$$$$$  |                               
+ \\______/   
+
+`;
+
+// One log, one style applied to the whole block
+console.log(`%c${easter}`, "color: #00ff2fff; font-weight: bold; line-height: 1.2;");
+console.log("%c- if you made it this far, contact me and let's chat/build/work something", "color: #2fff00ff; font-style: italic; font-family: monospace;");
