@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Not Found</title>
+
+    <meta name="theme-color" content="#0a0a0a">
+    <link rel="icon" type="image/png" href="assets/NAND2.png">
+    <link rel="stylesheet" href="css/styles.css">
+    
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: var(--bg-color);
+        }
+        
+        #sand-canvas {
+            display: block;
+            width: 100vw;
+            height: 100vh;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+
+        .error-nav {
+            position: absolute;
+            bottom: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+            font-family: 'SF MONO', 'Fira Code', monospace;
+        }
+
+        .home-btn {
+            color: inherit;
+            text-decoration: none;
+            font-size: 1.1rem;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+            position: relative;
+        }
+
+        .home-btn::before {
+            content: '← ';
+            opacity: 0;
+            position: absolute;
+            left: -1.5rem;
+            transition: opacity 0.2s;
+        }
+
+        .home-btn:hover {
+            opacity: 1;
+        }
+
+        .home-btn:hover::before {
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body class="dark-mode">
+
+    <canvas id="sand-canvas"></canvas>
+    
+    <div class="error-nav">
+        <a href="/" class="home-btn" id="home-link">Return Home</a>
+    </div>
+
+    <script src="js/sounds.js"></script>
+    <script>
+        const savedMode = localStorage.getItem('preferredMode');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        document.body.className = (savedMode || (prefersDark ? 'dark' : 'light')) + '-mode';
+
+        // click sound on nav
+        document.getElementById('home-link').addEventListener('click', (e) => {
+            if (window.playClose) {
+                window.playClose();
+            }
+        });
+    </script>
+    <script src="js/404.js"></script>
+</body>
+</html>
