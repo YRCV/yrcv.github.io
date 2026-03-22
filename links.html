@@ -6,14 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yahil Corcino - Links</title>
 
-    <!-- Theme Color -->
     <meta name="theme-color" content="#0a0a0a">
 
-    <link rel="icon" type="image/png" href="assets/NAND2.png">
+    <link rel="icon" type="image/png" href="assets/nand.png">
     <link rel="stylesheet" href="css/styles.css">
 
     <style>
-        /* Specific styles for links page */
         #links-page {
             min-height: 100dvh;
             display: flex;
@@ -30,9 +28,7 @@
             background: transparent;
             border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 8px;
-            /* matching the card roundness of the site projects */
             position: relative;
-            /* No shadows as requested */
         }
 
         body.light-mode .links-card {
@@ -75,7 +71,6 @@
             display: flex;
             justify-content: center;
             margin-top: -50px;
-            /* Overlap the banner */
             position: relative;
             z-index: 2;
         }
@@ -162,7 +157,6 @@
             letter-spacing: 0.02em;
         }
 
-        /* Mode toggle placement specifically for the links page */
         .mode-toggle-links {
             margin-top: 1.5rem;
             display: flex;
@@ -266,7 +260,6 @@
     </div>
 
     <script>
-        // match the portfolio
         function toggleLocalMode() {
             const currentMode = document.body.className.includes('dark') ? 'dark' : 'light';
             const newMode = currentMode === 'dark' ? 'light' : 'dark';
