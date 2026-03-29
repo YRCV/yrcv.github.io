@@ -678,6 +678,7 @@ const routes = {
     'skills': 'pages/skills.html',
     'blog': 'pages/blog.html',
     'contact': 'pages/contact.html',
+    'lab': 'pages/lab.html',
 };
 
 async function loadPage(pageName) {
