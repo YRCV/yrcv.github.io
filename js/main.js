@@ -416,10 +416,17 @@ async function loadProjectsData(preloadedData) {
 
         const grid = document.getElementById('projects-grid');
 
-        if (grid && data.projects) {
-            grid.innerHTML = '';
+        if (data.projects) {
+            if (grid) grid.innerHTML = '';
 
-            data.projects.forEach(project => {
+            // Sort so featured projects appear at the top
+            const sortedProjects = [...data.projects].sort((a, b) => {
+                const aVal = a.featured ? 1 : 0;
+                const bVal = b.featured ? 1 : 0;
+                return bVal - aVal;
+            });
+
+            sortedProjects.forEach(project => {
                 const card = document.createElement('div');
                 card.className = 'project-card';
                 card.style.cursor = 'pointer';
@@ -472,8 +479,18 @@ async function loadProjectsData(preloadedData) {
                 const title = document.createElement('h3');
                 title.className = 'project-title';
                 title.textContent = project.title;
+                
+                if (project.featured) {
+                    const star = document.createElement('span');
+                    star.className = 'featured-star';
+                    star.innerHTML = '★';
+                    star.style.marginLeft = '0.5rem';
+                    star.style.color = '#ffd700'; // Yellow
+                    star.title = 'Featured Project';
+                    title.appendChild(star);
+                }
+                
                 titleRow.appendChild(title);
-
 
 
                 // Icons container
@@ -532,9 +549,11 @@ async function loadProjectsData(preloadedData) {
                 });
                 content.appendChild(techContainer);
 
-
                 card.appendChild(content);
-                grid.appendChild(card);
+
+                if (grid) {
+                    grid.appendChild(card);
+                }
             });
         }
 

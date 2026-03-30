@@ -2,6 +2,7 @@
     "projects": [
         {
             "title": "SHPE App",
+            "featured": true,
             "subtitle": "SHPE NJIT",
             "highlightSubtitle": false,
             "description": "Event tracking & registration, user posts and comments, ranking system for engagement, etc to enhance SHPE NJIT chapter. I put 100+ hours of dev over break.",
@@ -63,6 +64,7 @@
         },
         {
             "title": "DataCool",
+            "featured": true,
             "subtitle": "Claude Hackathon - 1st Overall",
             "highlightSubtitle": true,
             "description": "machine learning system that predicts server hotspots and optimizes workload distribution across data center racks",
