@@ -1,24 +1,50 @@
 <section id="lab">
-    <a href="#landing" class="back-home">← home</a>
+    <a href="#landing" class="back-home">← Home</a>
 
-    <div class="page-mode-toggle">
-        <div class="mode-toggle">
-            <button class="mode-button" onclick="toggleMode()">
-                <span class="mode-icon dark-icon">◐</span>
-                <span class="mode-icon light-icon">◐</span>
-            </button>
+    <h1 class="page-title">Lab</h1>
+
+    <div class="vfd-display-wrapper">
+        <div class="dotmatrix-container">
+            <canvas class="dotmatrix-canvas" id="display"></canvas>
         </div>
     </div>
 
-    <div class="lab-container">
-        <div class="lab-header">
-            <p class="header">The Lab</p>
-            <p class="lab-subtitle">trinkets, experiments, and things that i find cool</p>
-        </div>
-
-        <div class="lab-grid">
-
-           
-        </div>
+    <div class="mode-toggle page-mode-toggle">
+        <button class="mode-button" onclick="toggleMode()">
+            <span class="mode-icon dark-icon">◐</span>
+            <span class="mode-icon light-icon">◐</span>
+        </button>
     </div>
+
+    <style>
+        .vfd-display-wrapper {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            margin-top: 2rem;
+        }
+
+        .dotmatrix-container {
+            background: #000;
+            border: 2px solid #00ff88;
+            border-radius: 8px;
+            padding: 8px;
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
+            display: inline-block;
+            max-width: 100%;
+        }
+
+        .dotmatrix-canvas {
+            display: block;
+            border-radius: 4px;
+            width: 800px;
+            max-width: 100%;
+        }
+
+        @media (max-width: 900px) {
+            .dotmatrix-canvas {
+                width: 100%;
+            }
+        }
+    </style>
 </section>

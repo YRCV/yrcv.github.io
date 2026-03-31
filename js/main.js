@@ -747,6 +747,8 @@ async function loadPage(pageName) {
             loadSkillsData(data);
         } else if (pageName === 'projects') {
             loadProjectsData(data);
+        } else if (pageName === 'lab') {
+            initLabPage();
         } else if (pageName === 'blog') {
             //loadBlogPosts();
         }
