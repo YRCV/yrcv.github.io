@@ -1,5 +1,5 @@
 const VFD_CONFIG = {
-    text: 'CPU:45% • MEMORY:2.1GB • STATUS:ONLINE •',
+    text: 'I love VFD displays in vintage electronics. Like this one.',
     colorActive: '#00ff88',      
     colorInactive: '#001a0f',    
     cellShape: 'circle',         
