@@ -46,4 +46,158 @@
             }
         }
     </style>
+
+    <style>
+        :root {
+            --led-color: #ff3b22;
+            --led-glow-1: rgba(255, 59, 34, 0.8);
+            --led-glow-2: rgba(255, 59, 34, 0.6);
+            --led-glow-3: rgba(255, 59, 34, 0.4);
+            --led-off: #080000;
+            --display-scale: 0.3;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #050505;
+            overflow: hidden;
+            font-family: sans-serif;
+            flex-direction: column;
+        }
+
+        .led-display {
+            display: flex;
+            background: #000;
+            padding: 60px;
+            border: 6px solid #414141;
+            border-radius: 20px;
+            transform: scale(var(--display-scale));
+        }
+
+        .digit-module {
+            display: flex;
+        }
+
+        .digit {
+            position: relative;
+            width: 100px;
+            height: 180px;
+        }
+
+        .punctuation {
+            position: relative;
+            width: 34px;
+            height: 180px;
+            margin-left: 2px;
+        }
+
+        .segment {
+            position: absolute;
+            background-color: var(--led-off);
+            transition: background-color 0.1s, filter 0.1s;
+        }
+
+        .dot {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: var(--led-off);
+            left: 6px;
+            transition: background-color 0.1s;
+        }
+
+        .segment.on {
+            background-color: var(--led-color);
+            filter: 
+                drop-shadow(0 0 3px var(--led-glow-1)) 
+                drop-shadow(0 0 8px var(--led-glow-2)) 
+                drop-shadow(0 0 16px var(--led-glow-3));
+        }
+
+        .dot.on {
+            background-color: var(--led-color);
+        }
+
+        .segment.h {
+            width: 76px;
+            height: 20px;
+            left: 12px;
+            clip-path: polygon(10px 0, 66px 0, 76px 10px, 66px 20px, 10px 20px, 0 10px);
+        }
+        
+        .segment.v {
+            width: 20px;
+            height: 76px;
+            clip-path: polygon(10px 0, 20px 10px, 20px 66px, 10px 76px, 0 66px, 0 10px);
+        }
+
+        .segment.a { top: 0; }
+        .segment.g { top: 80px; }
+        .segment.d { top: 160px; }
+        
+        .segment.f { top: 12px; left: 0; }
+        .segment.e { top: 92px; left: 0; }
+        
+        .segment.b { top: 12px; right: 0; }
+        .segment.c { top: 92px; right: 0; }
+
+        .dot.dp { bottom: 0; }
+        .dot.colon-top { top: 80px; }
+
+    </style>
+
+    <div class="led-display">
+        <div class="digit-module" id="digit-1">
+            <div class="digit">
+                <div class="segment h a on"></div>
+                <div class="segment v b on"></div>
+                <div class="segment v c on"></div>
+                <div class="segment h d on"></div>
+                <div class="segment v e on"></div>
+                <div class="segment v f on"></div>
+                <div class="segment h g on"></div>
+            </div>
+            <div class="punctuation">
+                <div class="dot colon-top on"></div>
+                <div class="dot dp on"></div>
+            </div>
+        </div>
+
+        <div class="digit-module" id="digit-2">
+            <div class="digit">
+                <div class="segment h a on"></div>
+                <div class="segment v b on"></div>
+                <div class="segment v c on"></div>
+                <div class="segment h d on"></div>
+                <div class="segment v e on"></div>
+                <div class="segment v f on"></div>
+                <div class="segment h g on"></div>
+            </div>
+            <div class="punctuation">
+                <div class="dot dp on"></div>
+            </div>
+        </div>
+
+        <div class="digit-module" id="digit-3">
+            <div class="digit">
+                <div class="segment h a on"></div>
+                <div class="segment v b on"></div>
+                <div class="segment v c on"></div>
+                <div class="segment h d on"></div>
+                <div class="segment v e on"></div>
+                <div class="segment v f on"></div>
+                <div class="segment h g on"></div>
+            </div>
+            <div class="punctuation">
+                <div class="dot dp on"></div>
+            </div>
+        </div>
+
+    </div>
 </section>

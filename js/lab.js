@@ -1,5 +1,5 @@
 const VFD_CONFIG = {
-    text: 'I love VFD displays in vintage electronics. Like this one.',
+    text: 'I love VFD displays in vintage electronics. Like this one. ',
     colorActive: '#00ff88',      
     colorInactive: '#001a0f',    
     cellShape: 'circle',         
@@ -260,9 +260,71 @@ class DotMatrixDisplay {
     }
 }
 
+const DISPLAY_NUMBER = 998;
+const DISPLAY_COLOR = '#ff3b22';
+const DISPLAY_SCALE = 0.3;
+
+const segmentMap = {
+    '0': ['a', 'b', 'c', 'd', 'e', 'f'],
+    '1': ['b', 'c'],
+    '2': ['a', 'b', 'd', 'e', 'g'],
+    '3': ['a', 'b', 'c', 'd', 'g'],
+    '4': ['b', 'c', 'f', 'g'],
+    '5': ['a', 'c', 'd', 'f', 'g'],
+    '6': ['a', 'c', 'd', 'e', 'f', 'g'],
+    '7': ['a', 'b', 'c'],
+    '8': ['a', 'b', 'c', 'd', 'e', 'f', 'g'],
+    '9': ['a', 'b', 'c', 'd', 'f', 'g'],
+    ' ': []
+};
+
+function updateDisplay(value) {
+    let strVal = value.toString().slice(0, 3).padStart(3, ' ');
+
+    for (let i = 0; i < 3; i++) {
+        const char = strVal[i];
+        const digitModule = document.getElementById(`digit-${i + 1}`);
+        const segments = digitModule.querySelectorAll('.segment');
+
+        segments.forEach(seg => seg.classList.remove('on'));
+
+        if (segmentMap[char]) {
+            segmentMap[char].forEach(segClass => {
+                const seg = digitModule.querySelector(`.segment.${segClass}`);
+                if (seg) seg.classList.add('on');
+            });
+        }
+    }
+}
+
+function hexToRgb(hex) {
+    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return result ? {
+        r: parseInt(result[1], 16),
+        g: parseInt(result[2], 16),
+        b: parseInt(result[3], 16)
+    } : null;
+}
+
+function updateColor(hexValue) {
+    const root = document.documentElement;
+    root.style.setProperty('--led-color', hexValue);
+
+    const rgb = hexToRgb(hexValue);
+    if(rgb) {
+        root.style.setProperty('--led-glow-1', `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.8)`);
+        root.style.setProperty('--led-glow-2', `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.6)`);
+        root.style.setProperty('--led-glow-3', `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.4)`);
+    }
+}
+
 function initLabPage() {
     const canvas = document.getElementById('display');
     if (canvas) {
         new DotMatrixDisplay(canvas, VFD_CONFIG);
     }
+
+    document.documentElement.style.setProperty('--display-scale', DISPLAY_SCALE);
+    updateDisplay(DISPLAY_NUMBER);
+    updateColor(DISPLAY_COLOR);
 }
