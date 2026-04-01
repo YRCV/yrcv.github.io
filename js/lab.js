@@ -260,7 +260,6 @@ class DotMatrixDisplay {
     }
 }
 
-const DISPLAY_NUMBER = 123;
 const DISPLAY_COLOR = '#ff3b22';
 const DISPLAY_SCALE = 0.16;
 
@@ -279,11 +278,14 @@ const segmentMap = {
 };
 
 function updateDisplay(value) {
-    let strVal = value.toString().slice(0, 3).padStart(3, ' ');
+    let strVal = value.toString().slice(0, 6).padStart(6, '0');
 
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < 6; i++) {
         const char = strVal[i];
         const digitModule = document.getElementById(`digit-${i + 1}`);
+        if (!digitModule) {
+            continue;
+        }
         const segments = digitModule.querySelectorAll('.segment');
 
         segments.forEach(seg => seg.classList.remove('on'));
@@ -295,6 +297,38 @@ function updateDisplay(value) {
             });
         }
     }
+
+    for (let i = 1; i <= 6; i++) {
+        const digitModule = document.getElementById(`digit-${i}`);
+        if (!digitModule) {
+            continue;
+        }
+
+        const topDot = digitModule.querySelector('.dot.colon-top');
+        const bottomDot = digitModule.querySelector('.dot.dp');
+        if (topDot) {
+            topDot.classList.remove('on');
+        }
+        if (bottomDot) {
+            bottomDot.classList.remove('on');
+        }
+    }
+
+    [2, 4].forEach((digitIndex) => {
+        const digitModule = document.getElementById(`digit-${digitIndex}`);
+        if (!digitModule) {
+            return;
+        }
+
+        const topDot = digitModule.querySelector('.dot.colon-top');
+        const bottomDot = digitModule.querySelector('.dot.dp');
+        if (topDot) {
+            topDot.classList.add('on');
+        }
+        if (bottomDot) {
+            bottomDot.classList.add('on');
+        }
+    });
 }
 
 function hexToRgb(hex) {
@@ -325,6 +359,27 @@ function initLabPage() {
     }
 
     document.documentElement.style.setProperty('--display-scale', DISPLAY_SCALE);
-    updateDisplay(DISPLAY_NUMBER);
     updateColor(DISPLAY_COLOR);
+
+    const getEstClockString = () => {
+        const parts = new Intl.DateTimeFormat('en-US', {
+            timeZone: 'America/New_York',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+            hour12: true
+        }).formatToParts(new Date());
+
+        const hour = parts.find((part) => part.type === 'hour')?.value ?? '00';
+        const minute = parts.find((part) => part.type === 'minute')?.value ?? '00';
+        const second = parts.find((part) => part.type === 'second')?.value ?? '00';
+        return `${hour}${minute}${second}`;
+    };
+
+    const renderClock = () => {
+        updateDisplay(getEstClockString());
+    };
+
+    renderClock();
+    setInterval(renderClock, 1000);
 }
