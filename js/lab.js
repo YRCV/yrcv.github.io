@@ -260,9 +260,9 @@ class DotMatrixDisplay {
     }
 }
 
-const DISPLAY_NUMBER = 998;
+const DISPLAY_NUMBER = 123;
 const DISPLAY_COLOR = '#ff3b22';
-const DISPLAY_SCALE = 0.3;
+const DISPLAY_SCALE = 0.16;
 
 const segmentMap = {
     '0': ['a', 'b', 'c', 'd', 'e', 'f'],
