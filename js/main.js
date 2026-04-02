@@ -195,10 +195,24 @@ function createExperienceCard(exp) {
     role.textContent = exp.role;
     titleGroup.appendChild(role);
 
+    const companyWrap = document.createElement('div');
+    companyWrap.className = 'experience-company-wrap';
+
+    if (exp.logo) {
+        const logo = document.createElement('img');
+        logo.src = exp.logo;
+        logo.className = 'experience-logo';
+        logo.alt = `${exp.company} logo`;
+        logo.loading = 'lazy';
+        companyWrap.appendChild(logo);
+    }
+
     const company = document.createElement('div');
     company.className = 'experience-company';
     company.textContent = exp.company;
-    titleGroup.appendChild(company);
+    companyWrap.appendChild(company);
+
+    titleGroup.appendChild(companyWrap);
 
     header.appendChild(titleGroup);
 

@@ -3,7 +3,7 @@
         {
             "company": "NJIT",
             "role": "Programming Tutor (C++)",
-            "logo": "assets/images/njit.png",
+            "logo": "assets/icons/njit_logo.jpg",
             "type": "work",
             "startDate": "Sep 2025",
             "endDate": "Present",
@@ -14,7 +14,7 @@
         {
             "company": "Educational Opportunity Program - NJIT",
             "role": "Computer Science Teaching Assistant",
-            "logo": "assets/images/njit.png",
+            "logo": "assets/icons/njit_logo.jpg",
             "type": "work",
             "startDate": "Jun 2025",
             "endDate": "Aug 2025",
@@ -25,7 +25,7 @@
         {
             "company": "Plot Pointe",
             "role": "Data Analyst",
-            "logo": "assets/images/plotpointe.png",
+            "logo": "assets/icons/plotpointe_logo.jpg",
             "type": "work",
             "startDate": "Jul 2023",
             "endDate": "Aug 2024",
@@ -36,7 +36,7 @@
         {
             "company": "Institute of Electrical and Electronics Engineers (IEEE)",
             "role": "Director of Outreach",
-            "logo": "assets/images/ieee.png",
+            "logo": "assets/icons/ieee_logo.svg",
             "type": "leadership",
             "startDate": "Mar 2025",
             "endDate": "Present",
@@ -47,7 +47,7 @@
         {
             "company": "Society of Hispanic Professional Engineers (SHPE)",
             "role": "Software Developer",
-            "logo": "assets/images/shpe.png",
+            "logo": "assets/icons/shpe_logo.jpg",
             "type": "leadership",
             "startDate": "Dec 2025",
             "endDate": "Present",
@@ -58,7 +58,7 @@
         {
             "company": "Management Leadership for Tomorrow (MLT)",
             "role": "Career Prep '28 Fellow",
-            "logo": "assets/images/mlt.png",
+            "logo": "assets/icons/mlt_logo.png",
             "type": "leadership",
             "startDate": "Dec 2025",
             "endDate": "Present",
@@ -69,7 +69,7 @@
         {
             "company": "Break Through Tech (BTT)",
             "role": "AI/ML Fellow",
-            "logo": "assets/images/btt.png",
+            "logo": "assets/icons/btt_logo.jpg",
             "type": "leadership",
             "startDate": "Mar 2026",
             "endDate": "Present",
@@ -80,7 +80,7 @@
         {
             "company": "ColorStack",
             "role": "Fellow",
-            "logo": "assets/images/colorstack.png",
+            "logo": "assets/icons/colorstack_logo.jpg",
             "type": "leadership",
             "startDate": "Nov 2025",
             "endDate": "Present",

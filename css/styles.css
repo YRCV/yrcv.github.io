@@ -1178,6 +1178,20 @@ body.light-mode .contact-icon {
     margin-bottom: 0.25rem;
 }
 
+.experience-company-wrap {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.experience-logo {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+    flex-shrink: 0;
+    border-radius: 4px;
+}
+
 .experience-company {
     font-size: 0.95rem;
     opacity: 0.6;
