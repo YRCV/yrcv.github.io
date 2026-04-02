@@ -2,8 +2,9 @@
     "experiences": [
         {
             "company": "NJIT",
-            "role": "C++ Tutor",
-            "type": "teaching",
+            "role": "Programming Tutor (C++)",
+            "logo": "assets/images/njit.png",
+            "type": "work",
             "startDate": "Sep 2025",
             "endDate": "Present",
             "description": [
@@ -13,7 +14,8 @@
         {
             "company": "Educational Opportunity Program - NJIT",
             "role": "Computer Science Teaching Assistant",
-            "type": "teaching",
+            "logo": "assets/images/njit.png",
+            "type": "work",
             "startDate": "Jun 2025",
             "endDate": "Aug 2025",
             "description": [
@@ -21,8 +23,20 @@
             ]
         },
         {
-            "company": "IEEE – NJIT Student Branch",
+            "company": "Plot Pointe",
+            "role": "Data Analyst",
+            "logo": "assets/images/plotpointe.png",
+            "type": "work",
+            "startDate": "Jul 2023",
+            "endDate": "Aug 2024",
+            "description": [
+                "Analyzed social media engagement metrics with Python, developing data-driven strategies that generated 300M+ Instagram views in 6 months and 20M+ views on sponsored content."
+            ]
+        },
+        {
+            "company": "Institute of Electrical and Electronics Engineers (IEEE)",
             "role": "Director of Outreach",
+            "logo": "assets/images/ieee.png",
             "type": "leadership",
             "startDate": "Mar 2025",
             "endDate": "Present",
@@ -31,8 +45,9 @@
             ]
         },
         {
-            "company": "SHPE – NJIT Chapter",
+            "company": "Society of Hispanic Professional Engineers (SHPE)",
             "role": "Software Developer",
+            "logo": "assets/images/shpe.png",
             "type": "leadership",
             "startDate": "Dec 2025",
             "endDate": "Present",
@@ -41,13 +56,36 @@
             ]
         },
         {
-            "company": "Plot Pointe",
-            "role": "Data Analyst",
-            "type": "work",
-            "startDate": "Jul 2023",
-            "endDate": "Aug 2024",
+            "company": "Management Leadership for Tomorrow (MLT)",
+            "role": "Career Prep '28 Fellow",
+            "logo": "assets/images/mlt.png",
+            "type": "leadership",
+            "startDate": "Dec 2025",
+            "endDate": "Present",
             "description": [
-                "Analyzed social media engagement metrics with Python, developing data-driven strategies that generated 300M+ Instagram views in 6 months and 20M+ views on sponsored content."
+                "Selected for an 18-month professional development program that accelerates the career growth of emerging leaders through structured coaching, mentorship, and targeted skill-building"
+            ]
+        },
+        {
+            "company": "Break Through Tech (BTT)",
+            "role": "AI/ML Fellow",
+            "logo": "assets/images/btt.png",
+            "type": "leadership",
+            "startDate": "Mar 2026",
+            "endDate": "Present",
+            "description": [
+                "Selected for a competitive year long program focused on AI/ML where I'll take a course at Cornell University and work on a real project with industry partners."
+            ]
+        },
+        {
+            "company": "ColorStack",
+            "role": "Fellow",
+            "logo": "assets/images/colorstack.png",
+            "type": "leadership",
+            "startDate": "Nov 2025",
+            "endDate": "Present",
+            "description": [
+                "Part of a large community of underrepresented students in tech."
             ]
         }
     ]
