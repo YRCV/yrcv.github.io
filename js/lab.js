@@ -277,58 +277,69 @@ const segmentMap = {
     ' ': []
 };
 
-function updateDisplay(value) {
-    let strVal = value.toString().slice(0, 6).padStart(6, '0');
+const clockState = {
+    digits: [],
+    lastValue: '',
+    formatter: new Intl.DateTimeFormat('en-US', {
+        timeZone: 'America/New_York',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: false
+    })
+};
 
-    for (let i = 0; i < 6; i++) {
-        const char = strVal[i];
-        const digitModule = document.getElementById(`digit-${i + 1}`);
-        if (!digitModule) {
-            continue;
-        }
-        const segments = digitModule.querySelectorAll('.segment');
-
-        segments.forEach(seg => seg.classList.remove('on'));
-
-        if (segmentMap[char]) {
-            segmentMap[char].forEach(segClass => {
-                const seg = digitModule.querySelector(`.segment.${segClass}`);
-                if (seg) seg.classList.add('on');
-            });
-        }
-    }
-
+function initClockCache() {
     for (let i = 1; i <= 6; i++) {
-        const digitModule = document.getElementById(`digit-${i}`);
-        if (!digitModule) {
-            continue;
-        }
+        const module = document.getElementById(`digit-${i}`);
+        if (!module) continue;
 
-        const topDot = digitModule.querySelector('.dot.colon-top');
-        const bottomDot = digitModule.querySelector('.dot.dp');
-        if (topDot) {
-            topDot.classList.remove('on');
-        }
-        if (bottomDot) {
-            bottomDot.classList.remove('on');
+        const segments = {};
+        ['a', 'b', 'c', 'd', 'e', 'f', 'g'].forEach(s => {
+            segments[s] = module.querySelector(`.segment.${s}`);
+        });
+
+        clockState.digits.push({
+            module,
+            segments,
+            dots: {
+                top: module.querySelector('.dot.colon-top'),
+                bottom: module.querySelector('.dot.dp')
+            },
+            lastChar: null
+        });
+    }
+}
+
+function updateDisplay(value) {
+    const strVal = value.toString().slice(0, 6).padStart(6, '0');
+    
+    if (strVal === clockState.lastValue) return;
+    clockState.lastValue = strVal;
+
+    for (let i = 0; i < clockState.digits.length; i++) {
+        const char = strVal[i];
+        const digit = clockState.digits[i];
+
+        if (digit.lastChar === char) continue;
+        digit.lastChar = char;
+
+        Object.values(digit.segments).forEach(seg => {
+            if (seg) seg.classList.remove('on');
+        });
+
+        const activeSegments = segmentMap[char] || [];
+        activeSegments.forEach(segKey => {
+            const seg = digit.segments[segKey];
+            if (seg) seg.classList.add('on');
+        });
+
+        if (digit.dots.top || digit.dots.bottom) {
+            const isColon = (i === 1 || i === 3);
+            if (digit.dots.top) digit.dots.top.classList.toggle('on', isColon);
+            if (digit.dots.bottom) digit.dots.bottom.classList.toggle('on', isColon);
         }
     }
-
-    [2, 4].forEach((digitIndex) => {
-        const digitModule = document.getElementById(`digit-${digitIndex}`);
-        if (!digitModule) {
-            return;
-        }
-
-        const topDot = digitModule.querySelector('.dot.colon-top');
-        const bottomDot = digitModule.querySelector('.dot.dp');
-        if (topDot) {
-            topDot.classList.add('on');
-        }
-        if (bottomDot) {
-            bottomDot.classList.add('on');
-        }
-    });
 }
 
 function hexToRgb(hex) {
@@ -358,21 +369,15 @@ function initLabPage() {
         new DotMatrixDisplay(canvas, VFD_CONFIG);
     }
 
+    initClockCache();
     document.documentElement.style.setProperty('--display-scale', DISPLAY_SCALE);
     updateColor(DISPLAY_COLOR);
 
     const getEstClockString = () => {
-        const parts = new Intl.DateTimeFormat('en-US', {
-            timeZone: 'America/New_York',
-            hour: '2-digit',
-            minute: '2-digit',
-            second: '2-digit',
-            hour12: false
-        }).formatToParts(new Date());
-
-        const hour = parts.find((part) => part.type === 'hour')?.value ?? '00';
-        const minute = parts.find((part) => part.type === 'minute')?.value ?? '00';
-        const second = parts.find((part) => part.type === 'second')?.value ?? '00';
+        const parts = clockState.formatter.formatToParts(new Date());
+        const hour = parts.find(p => p.type === 'hour')?.value ?? '00';
+        const minute = parts.find(p => p.type === 'minute')?.value ?? '00';
+        const second = parts.find(p => p.type === 'second')?.value ?? '00';
         return `${hour}${minute}${second}`;
     };
 
