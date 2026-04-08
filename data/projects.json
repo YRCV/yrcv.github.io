@@ -15,9 +15,9 @@
             ],
             "github": "",
             "demo": "https://apps.apple.com/us/app/shpe-njit/id6757627370",
-            "problem": "",
-            "solution": "",
-            "technicalDetails": ""
+            "problem": "Our SHPE NJIT chapter needed a platform to centralize event tracking and foster a stronger community.",
+            "solution": "Over winter break, I poured 100+ hours into building a mobile app in collaboration with a dev team. It features an event registration system alongside a social feed where users can post, comment, and engage with their peers.",
+            "technicalDetails": "Engineered with React Native, Expo, and a Supabase PostgreSQL backend. Features include secure apple/google/email auth, secure event check-in, a social feed, a points system to reward engagement, a ranking system to gamify that, and more."
         },
         {
             "title": "IEEE NJIT Website",
@@ -31,7 +31,10 @@
                 "CSS"
             ],
             "github": "",
-            "demo": ""
+            "demo": "",
+            "problem": "The original website used a proprietary builder, which strictly limited custom styling and precise control over the layout.",
+            "solution": "Rebuilt the entire website from scratch to eliminate those platform constraints, granting full creative control and easier expandability.",
+            "technicalDetails": "Developed with a highly organized and modular file structure (I'm proud of this), ensuring that future officers can easily be onboarded and update events or information with minimal friction."
         },
         {
             "title": "Portfolio Website",
@@ -45,13 +48,16 @@
                 "JavaScript"
             ],
             "github": "https://github.com/yrcv/yrcv.github.io",
-            "demo": ""
+            "demo": "",
+            "problem": "needed a space to showcase my personality.",
+            "solution": "decided to build my own.",
+            "technicalDetails": "built using plain HTML, CSS, and vanilla JavaScript. focused on keeping it light, fast, and free of bloat and slop."
         },
         {
             "title": "Series++",
             "subtitle": "SeriexHax_25",
             "highlightSubtitle": true,
-            "description": "AI-powered chatbot platform for group conversations with intelligent nudging and memory features.",
+            "description": "An intelligent extension for Series designed to fight the superficiality of modern networking by adding memory and weight to interactions.",
             "image": "assets/projects/4series.png",
             "tech": [
                 "Python",
@@ -60,7 +66,10 @@
                 "Gemini API"
             ],
             "github": "https://github.com/B3rK-3/series_hax",
-            "demo": ""
+            "demo": "",
+            "problem": "Modern networking apps often feel superficial and transactional. They lack the memory to combat social entropy, and traditional social metrics (like followers or likes) tend to encourage clout chasing and inequality rather than fostering genuine community accountability.",
+            "solution": "Series++ \"Recall\" acts as a thoughtful mutual friend. It fights social entropy by \"remembering\" key life details from chats to prompt users with warm, context-aware nudges (e.g., \"Ask Eren how his awards dinner went\") instead of generic catch-ups.",
+            "technicalDetails": "Implemented the Trust Protocol, an invisible reputation system designed to ensure safety without inequality. Every user starts at a perfect 1.0 score that can only decrease. Context-aware AI distinguishes between normal expression and actual harm. Trust is lost through toxic behavior and regained over time, making trust feel \"heavy.\""
         },
         {
             "title": "DataCool",
@@ -69,13 +78,15 @@
             "highlightSubtitle": true,
             "description": "machine learning system that predicts server hotspots and optimizes workload distribution across data center racks",
             "image": "https://github.com/GurmeherSingh/DataCool/blob/main/assets/post_optimization.PNG?raw=true",
-            "tech": [
-                "C++",
+            "tech": ["C++",
                 "Python",
                 "OpenCV"
             ],
-            "github": "https://github.com/yrcv/DataCool",
-            "demo": ""
+            "github": "https://github.com/GurmeherSingh/DataCool",
+            "demo": "",
+            "problem": "Data centers struggle with server hotspots and thermal overload, which can lead to critical overheating incidents and inefficient cooling.",
+            "solution": "DataCool prevents thermal overload using predictive modeling and constraint-based optimization. It redistributes workloads across racks, achieving 94% prediction accuracy and reducing critical overheating incidents by 75%.",
+            "technicalDetails": "Built a machine learning pipeline using a Histogram Gradient Boosting classifier for hotspot predictions, integrated with SHAP for interpretability. The optimization engine uses a constraint satisfaction algorithm balancing thermal physics, migration costs, and capacity limits. Built a live visualization dashboard with Streamlit, plotly, and threejs."
         },
         {
             "title": "Horae",
@@ -90,7 +101,10 @@
                 "OAuth 2.0"
             ],
             "github": "",
-            "demo": ""
+            "demo": "",
+            "problem": "Students often struggle to manage chaotic schedules, juggling fixed commitments with tasks scattered across Google Calendar, Canvas, and manual to-do lists.",
+            "solution": "Horae acts as calendar companion that seamlessly consolidates tasks from multiple platforms into a single view. It analyzes fixed commitments and automatically schedules flexible tasks into optimal open time slots, requiring zero manual setup.",
+            "technicalDetails": "Built with a Flask backend, Vite frontend, and MongoDB. The Google Gemini API allows for task management and intelligent rescheduling. We engineered a robust backend layer to normalize different data formats and successfully implemented the full OAuth 2.0 flow for Google Calendar alongside a custom Canvas API integration."
         },
         {
             "title": "SmartBin",
@@ -106,7 +120,10 @@
                 "ESP32"
             ],
             "github": "",
-            "demo": ""
+            "demo": "",
+            "problem": "Unpredictable trash accumulation across a campus leads to inefficient janitor routes and overflowing bins.",
+            "solution": "Developed an autonomous, event-driven IoT system that uses ultrasonic sensors to accurately detect fill levels. Telemetry is transmitted to an AWS-hosted dashboard for monitoring across a campus-wide network, optimizing janitorial efficiency.",
+            "technicalDetails": "Integrated an ESP32-S2 Mini with an HC-SR4 ultrasonic sensor and a 2000mAh LiPo battery, communicating with an AWS-hosted Flask backend. The sensor is positioned at a tested angle to define a clear fill threshold. By heavily optimizing firmware sleep cycles, we improved power consumption by 550x compared to our V1, extending projected battery life to 1.7 years."
         }
     ]
 }
