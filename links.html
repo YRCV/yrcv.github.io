@@ -25,14 +25,15 @@
         .links-card {
             width: 100%;
             max-width: 420px;
-            background: transparent;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgb(15, 15, 15);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 8px;
             position: relative;
         }
 
         body.light-mode .links-card {
-            border: 1px solid rgba(0, 0, 0, 0.2);
+            background: rgba(0, 0, 0, 0.03);
+            border: 1px solid rgba(0, 0, 0, 0.1);
         }
 
         .links-banner {
@@ -423,94 +424,6 @@
         }
 
         document.addEventListener('DOMContentLoaded', initLocalMode);
-
-        (function() {
-            const canvas = document.getElementById('portfolio-button-canvas');
-            if (!canvas) return;
-
-            const ctx = canvas.getContext('2d');
-            const button = canvas.closest('.portfolio-link');
-            
-            let particles = [];
-            let frame = 0;
-
-            function resizeCanvas() {
-                const rect = button.getBoundingClientRect();
-                canvas.width = rect.width;
-                canvas.height = rect.height;
-            }
-
-            resizeCanvas();
-            window.addEventListener('resize', resizeCanvas);
-
-            const PIXEL = 3;
-            const R = 0, G = 255, B = 136; // Cyan/neon green
-
-            function spawnParticle() {
-                const W = canvas.width;
-                const H = canvas.height;
-                const side = (Math.random() * 4) | 0;
-                let x, y;
-
-                if (side === 0) { x = Math.random() * W; y = 0; }
-                else if (side === 1) { x = W; y = Math.random() * H; }
-                else if (side === 2) { x = Math.random() * W; y = H; }
-                else { x = 0; y = Math.random() * H; }
-
-                const cx = W / 2, cy = H / 2;
-                const dx = cx - x, dy = cy - y;
-                const len = Math.sqrt(dx * dx + dy * dy) || 1;
-                const speed = 0.5 + Math.random() * 1.2;
-                const life = 0.6 + Math.random() * 0.4;
-
-                particles.push({
-                    x, y,
-                    vx: (dx / len) * speed,
-                    vy: (dy / len) * speed,
-                    alpha: 1,
-                    decay: speed / (len * life),
-                    size: Math.random() < 0.25 ? PIXEL * 2 : PIXEL,
-                    trail: [],
-                });
-            }
-
-            function snap(v) {
-                return Math.round(v / PIXEL) * PIXEL;
-            }
-
-            function tick() {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-                if (frame % 3 === 0) {
-                    for (let i = 0; i < 2; i++) spawnParticle();
-                }
-
-                particles = particles.filter(p => p.alpha > 0.01);
-
-                for (const p of particles) {
-                    p.trail.push({ x: snap(p.x), y: snap(p.y) });
-                    if (p.trail.length > 5) p.trail.shift();
-
-                    for (let t = 0; t < p.trail.length; t++) {
-                        const a = p.alpha * (t / p.trail.length) * 0.35;
-                        ctx.fillStyle = `rgba(${R},${G},${B},${a})`;
-                        ctx.fillRect(p.trail[t].x, p.trail[t].y, p.size, p.size);
-                    }
-
-                    ctx.fillStyle = `rgba(${R},${G},${B},${p.alpha})`;
-                    ctx.fillRect(snap(p.x), snap(p.y), p.size, p.size);
-
-                    p.x += p.vx;
-                    p.y += p.vy;
-                    p.alpha -= p.decay;
-                }
-
-                frame++;
-                requestAnimationFrame(tick);
-            }
-
-            tick();
-        })();
     </script>
 </body>
 
